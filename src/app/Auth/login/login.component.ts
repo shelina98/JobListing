@@ -29,9 +29,8 @@ export class LoginComponent implements OnInit {
     private rt: Router,
   ) {
 
-    this.us.getIDs();
+   // this.us.getIDs();
   }
-
 
   ngOnInit(): void {
 
@@ -51,19 +50,18 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('email', el[0].email);
         localStorage.setItem('username', el[0].username);
         localStorage.setItem('uid', el[0].uid);
-        if (el[0].role === 'shites') {
-          localStorage.setItem('role', 'shites');
+        if (el[0].role === 'recruiter') {
+          localStorage.setItem('role', 'recruiter');
           this.as.setRecruiter(true);
           this.rt.navigate(['/seller-dashboard']);
 
         }
-
         else {
-          localStorage.setItem('role', 'bleres');
+          localStorage.setItem('role', 'job-seeker');
           this.rt.navigate(['/buyer-dashboard']);
         }
-
       }
     });
+
   }
 }

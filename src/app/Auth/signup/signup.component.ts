@@ -43,19 +43,13 @@ export class SignupComponent implements OnInit {
     private as: AuthenticationService,
   ) {}
 
-
-
-
   ngOnInit(): void {
     console.log(" Dritan Kapo Love ");
   }
 
-
-
   onClick(email: string, username: string) {
     this.usernameUnique = true;
     this.emailUnique = true;
-
 
     let emailSubscription = this.as
       .getAccountWithGivenEmail(email)
@@ -65,16 +59,12 @@ export class SignupComponent implements OnInit {
         }
         emailSubscription.unsubscribe();
 
-
         let usernameSubscription = this.as
           .getAccountWithGivenUsername(username)
           .subscribe((el: User[]) => {
             if (el.length != 0) {
               this.usernameUnique = false;
-
             }
-
-
             else
             {
               if (this.usernameUnique && this.emailUnique) {
@@ -96,8 +86,7 @@ export class SignupComponent implements OnInit {
     localStorage.setItem('username', this.signupForm.get('username')?.value);
     this.as.setLoggedIn(true);
 
-
-    if (this.signupForm.get('role')?.value === 'shites') {
+    if (this.signupForm.get('role')?.value === 'recruiter') {
       this.rt.navigate(['/seller-dashboard']);
     }
     else
@@ -116,18 +105,14 @@ export class SignupComponent implements OnInit {
       cpassword: form.get('cpassword')?.value,
       role: form.get('role')?.value,
     })
-
       .then (
-
         USERnewRECORD => {
               this.fs.collection('users').doc(USERnewRECORD.id)
                 .update(
                 {
                   uid: USERnewRECORD.id
-
                 }
               );
-
               localStorage.setItem('uid',USERnewRECORD.id);
         })
 

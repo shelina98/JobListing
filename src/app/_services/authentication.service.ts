@@ -12,7 +12,6 @@ export class AuthenticationService {
   loggedIn: boolean = false;
 
   isLoggedIn(): boolean {
-
     if (localStorage.getItem('email')) {
       return (this.loggedIn = true);
     }
@@ -23,10 +22,7 @@ export class AuthenticationService {
     this.loggedIn = toLogInOrNotToLogIn;
   }
 
-
-
 //login
-
   getAccountInfo(email: string, password: string): Observable<User[]> {
     return this.fs
       .collection('users', (ref) =>
@@ -37,7 +33,6 @@ export class AuthenticationService {
       .valueChanges() as Observable<User[]>;
   }
 
-
 //sign up
   getAccountWithGivenEmail(email: string): Observable<User[]> {
     return this.fs
@@ -46,7 +41,6 @@ export class AuthenticationService {
         where('email', '==', email))
       .valueChanges() as Observable<User[]>;
   }
-
 
 //sign up
   getAccountWithGivenUsername(username: string): Observable<User[]> {
@@ -57,11 +51,13 @@ export class AuthenticationService {
       .valueChanges() as Observable<User[]>;
   }
 
+
   constructor(private fs: AngularFirestore) {}
 
   setRecruiter(recruiter: boolean) {
     localStorage.setItem('role', 'recruiter');
   }
+
   isRecruiter(): boolean {
     if (localStorage.getItem('role') === 'recruiter') {
       return true;

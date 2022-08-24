@@ -7,5 +7,4 @@ export interface User {
   password: string;
   cpassword: string;
   role: string;
-
 }

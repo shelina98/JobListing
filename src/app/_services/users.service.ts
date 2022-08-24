@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Observable} from 'rxjs';
-import { User } from '../_models/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -27,8 +25,6 @@ export class UsersService {
   //     .valueChanges() as Observable<User[]>;
   // }
 
-
-
   //get rid of this (i merr te gjitha)
   getIDs() {
     this.fs
@@ -40,9 +36,6 @@ export class UsersService {
         });
       });
   }
-
-
-
 
   // getIdByEmail(email: string | any): Observable<any> | any {
   //   let documentId: Observable<any>;

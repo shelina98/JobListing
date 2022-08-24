@@ -12,7 +12,6 @@ export class AppComponent implements OnInit {
 
   constructor(private firestore: AngularFirestore) {
    this.firestore.collection('users').valueChanges().subscribe(
-
      res => {
        this.users = res
      }
