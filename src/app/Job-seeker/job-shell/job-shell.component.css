@@ -1,0 +1,48 @@
+.shell {
+  height: 100%;
+}
+.filter-job {
+  background-color: white;
+  height: 30%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  border-bottom: 1px solid lightgray;
+}
+.inputContainers {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0% 15%;
+}
+
+mat-form-field {
+  width: 45%;
+}
+button {
+  background-color: #2557a7;
+  color: white;
+  bottom: 7px;
+}
+::ng-deep .mat-form-field-prefix {
+  top: 0 !important;
+  font-weight: bold;
+  padding-right: 10px;
+}
+::ng-deep .mat-form-field-suffix {
+  color: gray;
+}
+
+  /*Border te harkuar*/
+::ng-deep .mat-form-field-outline-start {
+  border-radius: 15px 0 0 15px !important;
+  min-width: 15px !important;
+}
+
+::ng-deep .mat-form-field-outline-end {
+  border-radius: 0 15px 15px 0 !important;
+}
+
+

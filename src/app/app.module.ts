@@ -22,11 +22,18 @@ import { RouterModule } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatOptionModule } from '@angular/material/core';
 import {NgSelectModule} from "@ng-select/ng-select";
+import { JobSeekerDashboardComponent } from './Job-seeker/job-seeker-dashboard/job-seeker-dashboard.component';
+import { SeekerNavComponent } from './Job-seeker/seeker-nav/seeker-nav.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import {JobShellComponent} from "./Job-seeker/job-shell/job-shell.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     PageNotFoundComponent,
+    JobSeekerDashboardComponent,
+    SeekerNavComponent,
+    JobShellComponent
   ],
 
   imports: [
@@ -46,6 +53,8 @@ import {NgSelectModule} from "@ng-select/ng-select";
     NgSelectModule,
     MatSelectModule,
     AppRoutingModule,
+    MatToolbarModule,
+    MatFormFieldModule
 
   ],
   exports:[
@@ -62,6 +71,7 @@ import {NgSelectModule} from "@ng-select/ng-select";
     MatButtonModule,
     MatOptionModule,
     MatSelectModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

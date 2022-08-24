@@ -58,7 +58,7 @@ export class LoginComponent implements OnInit {
         }
         else {
           localStorage.setItem('role', 'job-seeker');
-          this.rt.navigate(['/buyer-dashboard']);
+          this.rt.navigate(['/job-seeker']);
         }
       }
     });

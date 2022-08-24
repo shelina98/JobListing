@@ -1,0 +1,35 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+.mat-toolbar {
+  padding: 0px 20px;
+  background-color: white;
+  border-bottom: 1px solid lightgray;
+}
+
+.signin {
+  color: #2557ae;
+  margin-right: 20px;
+  padding: 10px 0px;
+}
+.signin:hover {
+  border-bottom:1px solid #2557a7;
+  cursor : pointer;
+}
+
+.roleChoose{
+  padding: 10px 0px ;
+  margin-left:  20px;
+  font-weight: 100
+}
+
+.roleChoose:hover{
+  border-bottom:1px solid #2557a7;
+  cursor : pointer;
+}
+.vertical {
+  background-color: lightgray;
+  width: 1px;
+  height: 20px;
+}
+
