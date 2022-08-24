@@ -1,1 +1,68 @@
-<p>login works!</p>
+<div class="flex-it">
+
+  <mat-card class="login-form">
+
+    <form [formGroup]="loginForm" class="form-group">
+
+      <img src="../../../../assets/background-images/onion.png" width="50">
+
+      <mat-card-header>  <label>Identifikohu</label> </mat-card-header>
+
+
+
+      <div>
+
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            id="email"
+            formControlName="email"
+            class="form-control"
+            placeholder="E-mail"
+          />
+
+          <mat-error
+            *ngIf="!correctCredentials"
+            class="post-click-error"
+          > </mat-error>
+        </mat-form-field>
+
+      </div>
+
+
+      <div>
+        <mat-form-field>
+          <input
+            matInput
+            type="password"
+            id="password"
+            formControlName="password"
+            class="form-control"
+            placeholder="Fjalekalimi"
+          />
+          <mat-error
+            *ngIf="!correctCredentials"
+            class="post-click-error"
+          ></mat-error>
+        </mat-form-field>
+      </div>
+
+
+      <mat-error *ngIf="!correctCredentials" class="post-click-error">E-maili, ose Fjalekalimi nuk eshte i sakte.</mat-error>
+
+
+      <button
+        type="button"
+        mat-raised-button
+        (click)=
+            "onClick(
+            loginForm.get('email')?.value,
+            loginForm.get('password')?.value)">
+
+       Identifikohu
+      </button>
+    </form>
+    <a [routerLink]="['/signup']" class="link"> Nuk ke llogari? Regjistrohu </a>
+  </mat-card>
+</div>
