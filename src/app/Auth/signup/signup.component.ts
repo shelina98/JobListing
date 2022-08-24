@@ -6,6 +6,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/_services/authentication.service';
 import {PasswordValidator} from "src/app/_validators/password.validator";
+import {Breakpoints} from '@angular/cdk/layout';
+import {BreakpointObserver} from '@angular/cdk/layout'
 
 @Component({
   selector: 'app-signup',
@@ -41,10 +43,16 @@ export class SignupComponent implements OnInit {
     private fs: AngularFirestore,
     private rt: Router,
     private as: AuthenticationService,
-  ) {}
+    private responsive: BreakpointObserver
+  ) {
 
-  ngOnInit(): void {
-    console.log(" Dritan Kapo Love ");
+  }
+
+  ngOnInit() {
+    this.responsive.observe(Breakpoints.HandsetLandscape).subscribe(result => {
+      if (result.matches) {
+        console.log("screens matches HandsetLandscape") }
+    });
   }
 
   onClick(email: string, username: string) {
