@@ -24,9 +24,11 @@
 }
 
 
- button {
-  background-color: #2557a7;
-  color: white;
+.postjob {
+  color: #2557ae;
+  align-self: center;
+  font-weight: bold;
+  font-size: 18px;
   margin-top: 20px;
 }
 .image {
