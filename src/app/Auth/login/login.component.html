@@ -63,6 +63,6 @@
        Identifikohu
       </button>
     </form>
-    <a [routerLink]="['/signup']" class="link"> Nuk ke llogari? Regjistrohu </a>
+    <a [routerLink]="['/signup']" [queryParams]= "{ role: role }" class="link"> Nuk ke llogari? Regjistrohu </a>
   </mat-card>
 </div>

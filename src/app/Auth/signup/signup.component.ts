@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/_models/user.model';
 import { RegexpValidator } from 'src/app/_validators/regexpValidator.validator';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Router } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { AuthenticationService } from 'src/app/_services/authentication.service';
 import {PasswordValidator} from "src/app/_validators/password.validator";
 import {Breakpoints} from '@angular/cdk/layout';
@@ -20,6 +20,7 @@ export class SignupComponent implements OnInit {
 
   usernameUnique: boolean = true;
   emailUnique: boolean = true;
+  role: string = ""
 
   signupForm = this.fb.group({
 
@@ -34,7 +35,6 @@ export class SignupComponent implements OnInit {
 
     cpassword: ['', [Validators.required, Validators.minLength(8)]],
 
-    role: ['', [Validators.required]],
   }, {validator: PasswordValidator});
 
 
@@ -43,7 +43,8 @@ export class SignupComponent implements OnInit {
     private fs: AngularFirestore,
     private rt: Router,
     private as: AuthenticationService,
-    private responsive: BreakpointObserver
+    private responsive: BreakpointObserver,
+    private route: ActivatedRoute
   ) {
 
   }
@@ -53,6 +54,11 @@ export class SignupComponent implements OnInit {
       if (result.matches) {
         console.log("screens matches HandsetLandscape") }
     });
+
+    this.route.queryParams
+      .subscribe(params => {
+        this.role = params.role;
+      })
   }
 
   onClick(email: string, username: string) {
@@ -95,11 +101,11 @@ export class SignupComponent implements OnInit {
     this.as.setLoggedIn(true);
 
     if (this.signupForm.get('role')?.value === 'recruiter') {
-      this.rt.navigate(['/seller-dashboard']);
+      this.rt.navigate(['/recruiter']);
     }
     else
     {
-      this.rt.navigate(['/buyer-dashboard']);
+      this.rt.navigate(['']);
     }
   }
 
@@ -111,7 +117,7 @@ export class SignupComponent implements OnInit {
       email: form.get('email')?.value,
       password: form.get('password')?.value,
       cpassword: form.get('cpassword')?.value,
-      role: form.get('role')?.value,
+      role: this.role,
     })
       .then (
         USERnewRECORD => {

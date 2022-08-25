@@ -1,6 +1,6 @@
 import { Component, NgZone, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { AuthenticationService } from 'src/app/_services/authentication.service';
 import { UsersService } from 'src/app/_services/users.service';
 import { User } from 'src/app/_models/user.model';
@@ -21,18 +21,25 @@ export class LoginComponent implements OnInit {
     password: [''],
   });
 
+  role : string = ""
   constructor(
     private fb: FormBuilder,
     private us: UsersService,
     private as: AuthenticationService,
     private fs: AngularFirestore,
     private rt: Router,
+    private route: ActivatedRoute
   ) {
 
    // this.us.getIDs();
   }
 
   ngOnInit(): void {
+
+    this.route.queryParams
+      .subscribe(params => {
+        this.role = params.role;
+      })
 
   }
 
