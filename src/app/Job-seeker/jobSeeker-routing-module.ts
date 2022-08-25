@@ -5,7 +5,7 @@ import {JobShellComponent} from "./job-shell/job-shell.component";
 
 const routes: Routes = [
   {
-    path: 'job-seeker',
+    path: '',
     component: JobSeekerDashboardComponent,
     children: [
       {
