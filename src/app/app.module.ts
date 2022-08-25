@@ -8,8 +8,7 @@ import {environment} from "../environments/environment";
 import {AngularFireModule} from "@angular/fire";
 import {AngularFirestoreModule} from "@angular/fire/firestore";
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import {LoginAndSignupModule} from "./Auth/login-and-signup.module";
-import {FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
@@ -23,41 +22,48 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatOptionModule } from '@angular/material/core';
 import {NgSelectModule} from "@ng-select/ng-select";
 import { MatToolbarModule } from '@angular/material/toolbar';
-import {MatTabsModule} from "@angular/material/tabs";
-import {JobSeekerModule} from "./Job-seeker/jobSeeker.module";
-import {MatProgressBarModule} from "@angular/material/progress-bar";
-import {MatDividerModule} from "@angular/material/divider";
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatRadioModule} from "@angular/material/radio";
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+import {MatSliderModule} from "@angular/material/slider";
+import {LoginAndSignupModule} from "./Auth/login-and-signup.module";
 import {RecruiterModule} from "./Recruiter/recruiter.module";
+import {JobSeekerModule} from "./Job-seeker/jobSeeker.module";
 
 @NgModule({
   declarations: [ AppComponent, PageNotFoundComponent,],
 
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
-    LoginAndSignupModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatInputModule,
-    MatButtonModule,
-    MatCardModule,
-    MatMenuModule,
-    MatIconModule,
     FormsModule,
     NgSelectModule,
     MatSelectModule,
-    MatToolbarModule,
+    MatAutocompleteModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatDatepickerModule,
     MatFormFieldModule,
-    MatTabsModule,
-    MatProgressBarModule,
-    MatDividerModule,
-    JobSeekerModule,
-    RecruiterModule
+    MatInputModule,
+    MatRadioModule,
+    MatSelectModule,
+    MatSliderModule,
+    MatSlideToggleModule,
+    LoginAndSignupModule,
+    RecruiterModule,
+    JobSeekerModule
+
   ],
   exports:[
     CommonModule,
+    FormsModule,
     ReactiveFormsModule,
     RouterModule,
     BrowserAnimationsModule,
@@ -71,6 +77,7 @@ import {RecruiterModule} from "./Recruiter/recruiter.module";
     MatOptionModule,
     MatSelectModule,
     MatToolbarModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

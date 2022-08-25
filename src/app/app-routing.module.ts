@@ -6,7 +6,6 @@ import { PageNotFoundComponent } from "./page-not-found/page-not-found.component
 import { JobSeekerRoutingModule } from "./Job-seeker/jobSeeker-routing-module";
 import { RecruiterRoutingModule } from "./Recruiter/recruiter-routing-module";
 import {JobSeekerDashboardComponent} from "./Job-seeker/job-seeker-dashboard/job-seeker-dashboard.component";
-import {JobShellComponent} from "./Job-seeker/job-shell/job-shell.component";
 
 
 const routes: Routes = [
@@ -15,7 +14,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
 
-  { path: '', component: JobSeekerDashboardComponent,},
+  { path: '', component: JobSeekerDashboardComponent},
   { path: '**', component: PageNotFoundComponent },
 
 ];
