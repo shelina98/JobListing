@@ -1,5 +1,5 @@
 .shell {
-  height: 100%;
+  height: calc(100% - 64px);
 }
 .filter-job {
   background-color: white;
@@ -61,7 +61,7 @@ button {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  background-color: seashell;
+  background-color: #f3f2f1;
   height: 100%;
 }
 

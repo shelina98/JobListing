@@ -3,8 +3,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  /*background-image: url("../../../../assets/background-images/TCEDFK.jpg");*/
-  background-color: blue;
+  background-color: #f3f2f1;
   background-size: cover;
   height: 100%;
 }

@@ -4,8 +4,7 @@
   justify-content: center;
   flex-direction: column;
   background-size: cover;
-  /*background-image: url("../../../../assets/background-images/TCEDFK.jpg");*/
-  /*background-color: yellow;*/
+  background-color: #f3f2f1;
   height: 100%;
 }
 

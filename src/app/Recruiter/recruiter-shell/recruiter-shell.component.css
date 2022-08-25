@@ -1,0 +1,39 @@
+.recruiter-shell {
+  display: flex;
+  height: calc(100% - 64px);
+  flex-direction: row;
+}
+
+.post-job {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+
+}
+.title {
+  font-size: 60px;
+  height: 50px;
+}
+
+.description {
+  color: gray;
+  font-size: 18px;
+}
+
+
+ button {
+  background-color: #2557a7;
+  color: white;
+  margin-top: 20px;
+}
+.image {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+
+}
