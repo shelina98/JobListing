@@ -102,7 +102,7 @@ export class SignupComponent implements OnInit {
     this.as.setLoggedIn(true);
 
     if (this.role === 'recruiter') {
-      this.rt.navigate(['/recruiter']);
+      this.rt.navigate(['/recruiter/job-poster']);
     }
     else
     {

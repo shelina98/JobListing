@@ -1,0 +1,58 @@
+<div class="flex-it">
+  <mat-card class="signup-form">
+
+    <form [formGroup] ='jobForm' class="form-group">
+
+      <mat-card-header> <label>Add Job</label></mat-card-header>
+      <div>
+        <mat-form-field> <input matInput type="text" id="title" formControlName="title" class="form-control"
+            placeholder="Title"/>
+          <mat-error *ngIf="jobForm.get('title')?.hasError('required')"
+          >Title is required!</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field> <input matInput type="text" id="company" formControlName="company" class="form-control"
+                                placeholder="Company"/>
+          <mat-error *ngIf="jobForm.get('company')?.hasError('required')"
+          >Company is required!</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field> <input matInput type="text" id="description" formControlName="description" class="form-control"
+                                placeholder="Description"/>
+          <mat-error *ngIf="jobForm.get('description')?.hasError('required')"
+          >Description is required!</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field> <input matInput type="text" id="salary" formControlName="salary" class="form-control"
+                                placeholder="Salary"/>
+          <mat-error *ngIf="jobForm.get('salary')?.hasError('required')"
+          >Salary is required!</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <div>
+                <mat-form-field class="inputs">
+                  <mat-label>Job type</mat-label>
+                  <mat-select formControlName="type">
+                    <mat-option value="Full-time">Full-Time</mat-option>
+                    <mat-option value="Part-time">PArt-time</mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+      </div>
+
+      <button type="button" mat-raised-button color="primary"
+        (click)="onClick()" [disabled]="!jobForm.valid">
+        ADD
+      </button>
+    </form>
+  </mat-card>
+
+</div>
+

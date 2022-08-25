@@ -16,10 +16,11 @@ import {MatDividerModule} from "@angular/material/divider";
 import {RecruiterNavComponent} from "./recruiter-nav/recruiter-nav.component";
 import {RecruiterDashboardComponent} from "./recruiter-dashboard/recruiter-dashboard.component";
 import {RecruiterRoutingModule} from "./recruiter-routing-module";
+import { JobPosterComponent } from './job-poster/job-poster.component';
 
 
 @NgModule({
-  declarations: [ RecruiterNavComponent, RecruiterDashboardComponent
+  declarations: [ RecruiterNavComponent, RecruiterDashboardComponent, JobPosterComponent
   ],
 
   imports: [
