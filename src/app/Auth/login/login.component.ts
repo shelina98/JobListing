@@ -53,12 +53,12 @@ export class LoginComponent implements OnInit {
         if (el[0].role === 'recruiter') {
           localStorage.setItem('role', 'recruiter');
           this.as.setRecruiter(true);
-          this.rt.navigate(['/seller-dashboard']);
+          this.rt.navigate(['/recruiter']);
 
         }
         else {
           localStorage.setItem('role', 'job-seeker');
-          this.rt.navigate(['/job-seeker']);
+          this.rt.navigate(['']);
         }
       }
     });

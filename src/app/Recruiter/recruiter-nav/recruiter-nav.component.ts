@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-recruiter-nav',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RecruiterNavComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+  }
+  signIn() {
+    this.router.navigate(['/login'],{
+      queryParams:{
+        role : 'recruiter'
+      }
+    })
+  }
+  jobPage(){
+    this.router.navigate([''])
   }
 
 }
