@@ -26,6 +26,10 @@ import { JobSeekerDashboardComponent } from './Job-seeker/job-seeker-dashboard/j
 import { SeekerNavComponent } from './Job-seeker/seeker-nav/seeker-nav.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import {JobShellComponent} from "./Job-seeker/job-shell/job-shell.component";
+import {MatTabsModule} from "@angular/material/tabs";
+import {JobSeekerModule} from "./Job-seeker/jobSeeker.module";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {MatDividerModule} from "@angular/material/divider";
 
 @NgModule({
   declarations: [
@@ -54,7 +58,11 @@ import {JobShellComponent} from "./Job-seeker/job-shell/job-shell.component";
     MatSelectModule,
     AppRoutingModule,
     MatToolbarModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatTabsModule,
+    JobSeekerModule,
+    MatProgressBarModule,
+    MatDividerModule
 
   ],
   exports:[

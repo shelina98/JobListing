@@ -12,10 +12,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatOptionModule} from "@angular/material/core";
 import { MatSelectModule} from "@angular/material/select";
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { JobDetailComponent } from './job-detail/job-detail.component';
 
 
 @NgModule({
   declarations: [
+     JobDetailComponent
   ],
 
   imports: [
@@ -36,9 +38,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 
   ],
 
-  exports: [
+    exports: [
+        JobDetailComponent
 
-  ],
+    ],
 })
 
 export class JobSeekerModule {
