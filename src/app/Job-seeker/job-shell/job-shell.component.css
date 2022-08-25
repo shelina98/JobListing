@@ -61,20 +61,18 @@ button {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  background-color: lightgray;
+  background-color: seashell;
   height: 100%;
 }
 
 .job-list {
   padding: 20px 20px;
-  background-color: blue;
   width: 50%;
 }
 
 
 .detail-container {
   padding: 20px 20px;
-  background-color: red;
   width: 60%;
 }
 .job-list {

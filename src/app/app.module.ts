@@ -22,23 +22,15 @@ import { RouterModule } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatOptionModule } from '@angular/material/core';
 import {NgSelectModule} from "@ng-select/ng-select";
-import { JobSeekerDashboardComponent } from './Job-seeker/job-seeker-dashboard/job-seeker-dashboard.component';
-import { SeekerNavComponent } from './Job-seeker/seeker-nav/seeker-nav.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import {JobShellComponent} from "./Job-seeker/job-shell/job-shell.component";
 import {MatTabsModule} from "@angular/material/tabs";
 import {JobSeekerModule} from "./Job-seeker/jobSeeker.module";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {MatDividerModule} from "@angular/material/divider";
+import {RecruiterModule} from "./Recruiter/recruiter.module";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    PageNotFoundComponent,
-    JobSeekerDashboardComponent,
-    SeekerNavComponent,
-    JobShellComponent
-  ],
+  declarations: [ AppComponent, PageNotFoundComponent,],
 
   imports: [
     BrowserModule,
@@ -56,14 +48,13 @@ import {MatDividerModule} from "@angular/material/divider";
     FormsModule,
     NgSelectModule,
     MatSelectModule,
-    AppRoutingModule,
     MatToolbarModule,
     MatFormFieldModule,
     MatTabsModule,
-    JobSeekerModule,
     MatProgressBarModule,
-    MatDividerModule
-
+    MatDividerModule,
+    JobSeekerModule,
+    RecruiterModule
   ],
   exports:[
     CommonModule,
@@ -79,7 +70,7 @@ import {MatDividerModule} from "@angular/material/divider";
     MatButtonModule,
     MatOptionModule,
     MatSelectModule,
-    MatToolbarModule
+    MatToolbarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

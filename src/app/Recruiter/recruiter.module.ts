@@ -12,20 +12,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatOptionModule} from "@angular/material/core";
 import { MatSelectModule} from "@angular/material/select";
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { JobDetailComponent } from './job-detail/job-detail.component';
-import {JobSeekerRoutingModule} from "./jobSeeker-routing-module";
-import {SeekerNavComponent} from "./seeker-nav/seeker-nav.component";
-import {JobSeekerDashboardComponent} from "./job-seeker-dashboard/job-seeker-dashboard.component";
-import {JobShellComponent} from "./job-shell/job-shell.component";
 import {MatDividerModule} from "@angular/material/divider";
+import {RecruiterNavComponent} from "./recruiter-nav/recruiter-nav.component";
+import {RecruiterDashboardComponent} from "./recruiter-dashboard/recruiter-dashboard.component";
+import {RecruiterRoutingModule} from "./recruiter-routing-module";
 
 
 @NgModule({
-  declarations: [
-     JobDetailComponent,
-     SeekerNavComponent,
-     JobSeekerDashboardComponent,
-     JobShellComponent
+  declarations: [ RecruiterNavComponent, RecruiterDashboardComponent
   ],
 
   imports: [
@@ -43,19 +37,14 @@ import {MatDividerModule} from "@angular/material/divider";
     FormsModule,
     MatToolbarModule,
     MatInputModule,
-    JobSeekerRoutingModule,
     MatDividerModule,
-
-
+    RecruiterRoutingModule
   ],
 
-    exports: [
-        JobDetailComponent,
-        JobSeekerDashboardComponent,
-        JobShellComponent,
-        SeekerNavComponent
-    ],
+  exports: [
+
+  ],
 })
 
-export class JobSeekerModule {
+export class RecruiterModule {
 }

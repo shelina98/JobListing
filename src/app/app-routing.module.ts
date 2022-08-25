@@ -1,27 +1,27 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {LoginComponent} from "./Auth/login/login.component";
-import {SignupComponent} from "./Auth/signup/signup.component";
-import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
-import {JobSeekerDashboardComponent} from "./Job-seeker/job-seeker-dashboard/job-seeker-dashboard.component";
-import {JobShellComponent} from "./Job-seeker/job-shell/job-shell.component";
+import { LoginComponent } from "./Auth/login/login.component";
+import { SignupComponent } from "./Auth/signup/signup.component";
+import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
+import { JobSeekerRoutingModule } from "./Job-seeker/jobSeeker-routing-module";
+import { RecruiterRoutingModule } from "./Recruiter/recruiter-routing-module";
+
 
 const routes: Routes = [
 
 
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'job-seeker', component: JobSeekerDashboardComponent,
-    children: [
-      { path:"",component: JobShellComponent}
-    ]},
-  { path: '', component: LoginComponent },
+
+  { path: '', component: LoginComponent},
   { path: '**', component: PageNotFoundComponent },
 
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes),],
+  imports: [RouterModule.forRoot(routes),
+            JobSeekerRoutingModule,
+            RecruiterRoutingModule],
   exports: [RouterModule],
 })
 
