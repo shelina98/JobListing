@@ -10,7 +10,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 
 export class ChangeRootComponent implements OnInit {
   title: string = ""
-  message: string = "Are you sure you will leave? You will be logged out!"
+  message: string | undefined ;
   confirmButtonText = "Yes"
   cancelButtonText = "Cancel"
   constructor(
@@ -18,14 +18,8 @@ export class ChangeRootComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) private data: any,
     private dialogRef: MatDialogRef<ChangeRootComponent>) {
     if(data){
-      if(data.role === 'recruiter') {
-        this.title = 'Go to Find Jobs Page'
-      }
-      else
-      {
-        this.title = 'Go to Post Jobs Page'
-      }
-      this.message = data.message || this.message;
+      this.title = 'Go to Post Jobs Page'
+      this.message = data.message;
       if (data.buttonText) {
         this.confirmButtonText = data.buttonText.ok || this.confirmButtonText;
         this.cancelButtonText = data.buttonText.cancel || this.cancelButtonText;
@@ -37,18 +31,9 @@ export class ChangeRootComponent implements OnInit {
     localStorage.removeItem('email');
     localStorage.removeItem('username');
     localStorage.removeItem('uid');
-    if(localStorage.getItem('role') === 'recruiter') {
-      this.router.navigate(['/recruiter']);
-
-    }
-    else {
-      this.router.navigate(['']);
-    }
-    localStorage.removeItem('role')
-
+    this.router.navigate(['/recruiter']);
     this.dialogRef.close(true);
   }
-
   ngOnInit(): void {
   }
 

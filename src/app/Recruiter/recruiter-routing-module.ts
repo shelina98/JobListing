@@ -16,13 +16,12 @@ const routes: Routes = [
       {
         path: '',
         component:RecruiterShellComponent,
-        canActivate: [IsloggedoutGuard]
+        canActivate:[RecruiterGuard]
 
       },
       {
         path:'job-poster',
         component: JobPosterComponent,
-        canActivate: [AuthenticationGuard, RecruiterGuard],
 
       }
     ]

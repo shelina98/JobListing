@@ -8,14 +8,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class AppComponent implements OnInit {
   title = 'JobListingApp';
-  users : any[] | undefined;
 
-  constructor(private firestore: AngularFirestore) {
-   this.firestore.collection('users').valueChanges().subscribe(
-     res => {
-       this.users = res
-     }
-   )
+  constructor() {
   }
 
   ngOnInit() {

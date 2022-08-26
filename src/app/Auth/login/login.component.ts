@@ -39,6 +39,7 @@ export class LoginComponent implements OnInit {
     this.route.queryParams
       .subscribe(params => {
         this.role = params.role;
+        console.log(this.role);
       })
 
   }
@@ -57,13 +58,14 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('email', el[0].email);
         localStorage.setItem('username', el[0].username);
         localStorage.setItem('uid', el[0].uid);
+
         if (el[0].role === 'recruiter') {
           localStorage.setItem('role', 'recruiter');
           this.as.setRecruiter(true);
           this.rt.navigate(['/recruiter']);
 
-
         }
+
         else {
           localStorage.setItem('role', 'job-seeker');
           this.rt.navigate(['']);

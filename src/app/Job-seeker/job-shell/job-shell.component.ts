@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import {AngularFirestore, DocumentChangeAction} from "@angular/fire/firestore";
-import {Observable} from "rxjs";
-import {JobServiceService} from "../../_services/job-service.service";
-import  { Job} from "../../_models/job.model";
-import {ActivatedRoute, Router} from "@angular/router";
+import { JobServiceService} from "../../_services/job-service.service";
+import { Job} from "../../_models/job.model";
+import { Router} from "@angular/router";
 
 @Component({
   selector: 'app-job-shell',
@@ -29,23 +27,18 @@ export class JobShellComponent implements OnInit {
         if(res.length != 0)
         {
           this.jobs = res
-          console.log(this.jobs[0])
-        }
-        else {
-          console.log('nuk ka pune')
-
         }
       });
   }
 
   ngOnInit(): void {
-
     this.filterJob = this._formBuilder.group({
       searchInput: "",
     })
   }
 
   gotopostjobs(){
+
     this.router.navigate(['/recruiter/job-poster'])
   }
 

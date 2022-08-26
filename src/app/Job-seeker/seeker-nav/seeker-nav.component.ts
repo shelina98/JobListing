@@ -12,6 +12,7 @@ export class SeekerNavComponent implements OnInit {
   isLoggedIn: boolean = false
   username: string | null = ""
   signinOR : string = "Sign In"
+
   constructor(private router: Router,
               private authS: AuthenticationService) { }
 
@@ -31,7 +32,6 @@ export class SeekerNavComponent implements OnInit {
           role : 'job-seeker'
         }
       })
-
     }
     else
     {
