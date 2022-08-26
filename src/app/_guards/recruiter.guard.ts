@@ -21,7 +21,7 @@ export class RecruiterGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (this.authS.isRecruiter()) return true;
+    if (this.authS.isRecruiter() || (!localStorage.getItem('role'))) return true;
     this.openDialog()
     return false;
   }
