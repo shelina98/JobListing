@@ -19,10 +19,11 @@ import {RecruiterRoutingModule} from "./recruiter-routing-module";
 import { JobPosterComponent } from './job-poster/job-poster.component';
 import {ChangeRootComponent} from "../_shared/change-root/change-root.component";
 import { MatSnackBarModule} from "@angular/material/snack-bar";
+import {RecruiterShellComponent} from "./recruiter-shell/recruiter-shell.component";
 
 
 @NgModule({
-  declarations: [ RecruiterNavComponent, RecruiterDashboardComponent, JobPosterComponent
+  declarations: [ RecruiterNavComponent, RecruiterDashboardComponent, JobPosterComponent,RecruiterShellComponent
   ],
 
   imports: [

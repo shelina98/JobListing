@@ -10,6 +10,7 @@ export class AppComponent implements OnInit {
   title = 'JobListingApp';
 
   constructor() {
+    localStorage.setItem('role','recruiter')
   }
 
   ngOnInit() {

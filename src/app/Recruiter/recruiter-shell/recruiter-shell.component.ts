@@ -7,7 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RecruiterShellComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+    localStorage.setItem('role','recruiter')
+
+  }
 
   ngOnInit(): void {
   }
