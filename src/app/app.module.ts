@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import {environment} from "../environments/environment";
 import {AngularFireModule} from "@angular/fire";
 import {AngularFirestoreModule} from "@angular/fire/firestore";
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { PageNotFoundComponent } from './_shared/page-not-found/page-not-found.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
@@ -31,36 +31,39 @@ import {MatSliderModule} from "@angular/material/slider";
 import {LoginAndSignupModule} from "./Auth/login-and-signup.module";
 import {RecruiterModule} from "./Recruiter/recruiter.module";
 import {JobSeekerModule} from "./Job-seeker/jobSeeker.module";
+import { ChangeRootComponent } from './_shared/change-root/change-root.component';
+import {MatDialogModule} from "@angular/material/dialog";
 
 @NgModule({
-  declarations: [ AppComponent, PageNotFoundComponent,],
+  declarations: [ AppComponent, PageNotFoundComponent, ChangeRootComponent,],
 
-  imports: [
-    CommonModule,
-    BrowserModule,
-    AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFirestoreModule,
-    ReactiveFormsModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    NgSelectModule,
-    MatSelectModule,
-    MatAutocompleteModule,
-    MatButtonModule,
-    MatCheckboxModule,
-    MatDatepickerModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatRadioModule,
-    MatSelectModule,
-    MatSliderModule,
-    MatSlideToggleModule,
-    LoginAndSignupModule,
-    RecruiterModule,
-    JobSeekerModule
+    imports: [
+        CommonModule,
+        BrowserModule,
+        AppRoutingModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        AngularFirestoreModule,
+        ReactiveFormsModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        NgSelectModule,
+        MatSelectModule,
+        MatAutocompleteModule,
+        MatButtonModule,
+        MatCheckboxModule,
+        MatDatepickerModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatRadioModule,
+        MatSelectModule,
+        MatSliderModule,
+        MatSlideToggleModule,
+        LoginAndSignupModule,
+        RecruiterModule,
+        JobSeekerModule,
+        MatDialogModule
 
-  ],
+    ],
   exports:[
     CommonModule,
     FormsModule,

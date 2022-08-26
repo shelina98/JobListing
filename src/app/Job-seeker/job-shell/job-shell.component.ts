@@ -4,6 +4,7 @@ import {AngularFirestore, DocumentChangeAction} from "@angular/fire/firestore";
 import {Observable} from "rxjs";
 import {JobServiceService} from "../../_services/job-service.service";
 import  { Job} from "../../_models/job.model";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-job-shell',
@@ -20,7 +21,8 @@ export class JobShellComponent implements OnInit {
   originally bred for hunting.`;
 
   constructor(private _formBuilder: FormBuilder,
-              private jobService: JobServiceService) {
+              private jobService: JobServiceService,
+              private router: Router) {
 
     this.jobService.getAllJobs().subscribe(
       res => {
@@ -41,11 +43,11 @@ export class JobShellComponent implements OnInit {
     this.filterJob = this._formBuilder.group({
       searchInput: "",
     })
-
-
   }
 
-
+  gotopostjobs(){
+    this.router.navigate(['/recruiter/job-poster'])
+  }
 
   // filterJobs(filterValue: string) {
   //   filterValue = filterValue.trim(); // Remove whitespace

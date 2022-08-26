@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
         if (el[0].role === 'recruiter') {
           localStorage.setItem('role', 'recruiter');
           this.as.setRecruiter(true);
-          this.rt.navigate(['/recruiter/job-poster']);
+          this.rt.navigate(['/recruiter']);
 
 
         }

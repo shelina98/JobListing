@@ -17,7 +17,6 @@ export class SeekerNavComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoggedIn = this.authS.isLoggedIn()
-
     if(this.isLoggedIn) {
       this.signinOR = "Log Out"
     }

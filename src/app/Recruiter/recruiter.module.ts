@@ -17,6 +17,8 @@ import {RecruiterNavComponent} from "./recruiter-nav/recruiter-nav.component";
 import {RecruiterDashboardComponent} from "./recruiter-dashboard/recruiter-dashboard.component";
 import {RecruiterRoutingModule} from "./recruiter-routing-module";
 import { JobPosterComponent } from './job-poster/job-poster.component';
+import {ChangeRootComponent} from "../_shared/change-root/change-root.component";
+import { MatSnackBarModule} from "@angular/material/snack-bar";
 
 
 @NgModule({
@@ -39,9 +41,10 @@ import { JobPosterComponent } from './job-poster/job-poster.component';
     MatToolbarModule,
     MatInputModule,
     MatDividerModule,
-    RecruiterRoutingModule
+    RecruiterRoutingModule,
+    MatSnackBarModule
   ],
-
+  entryComponents:[ChangeRootComponent],
   exports: [
 
   ],

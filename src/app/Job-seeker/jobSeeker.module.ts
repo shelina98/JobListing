@@ -18,6 +18,7 @@ import {SeekerNavComponent} from "./seeker-nav/seeker-nav.component";
 import {JobSeekerDashboardComponent} from "./job-seeker-dashboard/job-seeker-dashboard.component";
 import {JobShellComponent} from "./job-shell/job-shell.component";
 import {MatDividerModule} from "@angular/material/divider";
+import {ChangeRootComponent} from "../_shared/change-root/change-root.component";
 
 
 @NgModule({
@@ -48,7 +49,7 @@ import {MatDividerModule} from "@angular/material/divider";
 
 
   ],
-
+    entryComponents:[ChangeRootComponent],
     exports: [
         JobDetailComponent,
         JobSeekerDashboardComponent,
