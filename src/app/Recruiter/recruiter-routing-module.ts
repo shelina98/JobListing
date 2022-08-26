@@ -3,6 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import {RecruiterDashboardComponent} from "./recruiter-dashboard/recruiter-dashboard.component";
 import {RecruiterShellComponent} from "./recruiter-shell/recruiter-shell.component";
 import {JobPosterComponent} from "./job-poster/job-poster.component";
+import {AuthenticationGuard} from "../_guards/authentication.guard";
+import {RecruiterGuard} from "../_guards/recruiter.guard";
+import {IsloggedoutGuard} from "../_guards/isloggedout.guard";
 
 
 const routes: Routes = [
@@ -12,11 +15,15 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component:RecruiterShellComponent
+        component:RecruiterShellComponent,
+        canActivate: [IsloggedoutGuard]
+
       },
       {
         path:'job-poster',
-        component: JobPosterComponent
+        component: JobPosterComponent,
+        canActivate: [AuthenticationGuard, RecruiterGuard],
+
       }
     ]
   }

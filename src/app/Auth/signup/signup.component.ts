@@ -18,7 +18,6 @@ import {BreakpointObserver} from '@angular/cdk/layout'
 
 export class SignupComponent implements OnInit {
 
-  usernameUnique: boolean = true;
   emailUnique: boolean = true;
   role: string = ""
 
@@ -28,7 +27,6 @@ export class SignupComponent implements OnInit {
       '',
       [Validators.required, RegexpValidator.usernamePatternValidator],
     ],
-
     email: ['', [Validators.required, RegexpValidator.emailPatternValidator]],
 
     password: ['', [Validators.required, Validators.minLength(8)]],
@@ -61,8 +59,7 @@ export class SignupComponent implements OnInit {
       })
   }
 
-  onClick(email: string, username: string) {
-    this.usernameUnique = true;
+  onClick(email: string) {
     this.emailUnique = true;
 
     let emailSubscription = this.as
@@ -71,23 +68,13 @@ export class SignupComponent implements OnInit {
         if (el.length != 0) {
           this.emailUnique = false;
         }
-        emailSubscription.unsubscribe();
-
-        let usernameSubscription = this.as
-          .getAccountWithGivenUsername(username)
-          .subscribe((el: User[]) => {
-            if (el.length != 0) {
-              this.usernameUnique = false;
-            }
-            else
-            {
-              if (this.usernameUnique && this.emailUnique) {
-                usernameSubscription.unsubscribe();
-                this.signUpAccordingToRoles();
-              }
+        else
+        {
+          emailSubscription.unsubscribe();
+          this.signUpAccordingToRoles();
             }
           });
-      });
+
   }
 
 

@@ -59,6 +59,7 @@ export class AuthenticationService {
   }
 
   isRecruiter(): boolean {
+
     if (localStorage.getItem('role') === 'recruiter') {
       return true;
     }

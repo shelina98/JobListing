@@ -1,19 +1,18 @@
 <mat-toolbar>
-  <span> <img src="assets/01.jpg" width="65%"/></span>
-<!--  <button mat-icon-button >-->
-<!--    <mat-icon>favorite</mat-icon>-->
-<!--  </button>-->
+  <span> <img src="assets/01.jpg" width="65%" alt=""/></span>
 
-<!--  <button mat-icon-button >-->
-<!--    <mat-icon>favorite</mat-icon>-->
-<!--  </button>-->
   <span class="example-spacer"></span>
+    <button mat-icon-button *ngIf="isLoggedIn">
+      <mat-icon>favorite</mat-icon>
+    </button>
 
-<!--  <button mat-button >-->
-<!--    Dritan Kapo Love-->
-<!--  </button>-->
-
-  <div class="signin" (click)="signIn()" > Sign In </div>
+    <button mat-icon-button *ngIf="isLoggedIn" >
+      <mat-icon> chat</mat-icon>
+    </button>
+  <button mat-button *ngIf="isLoggedIn">
+    {{username}}
+  </button>
+  <div class="signin" (click)="signIn()" > {{signinOR}}</div>
   <div class="vertical"></div>
-  <div class="roleChoose" (click)="recruiterPage()" > Employer/Post a Job </div>
+  <div class="roleChoose" (click)="recruiterPage()"> Post a Job </div>
 </mat-toolbar>

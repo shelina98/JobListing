@@ -2,16 +2,9 @@
   <mat-card class="signup-form">
 
     <form [formGroup] ='signupForm' class="form-group">
-
-<!--      <img src="../../../../assets/background-images/tomato.png" width="40"-->
-<!--           style="margin-right: 15px">-->
-
-      <mat-card-header> <label>Regjistrohu</label></mat-card-header>
-
+      <mat-card-header> <label>Register</label></mat-card-header>
       <div>
-
         <mat-form-field>
-
           <input
             matInput
             type="text"
@@ -20,7 +13,6 @@
             class="form-control"
             placeholder="Emri"
           />
-
           <mat-error
             *ngIf="
              signupForm.controls['username'].touched &&
@@ -106,9 +98,7 @@
         color="primary"
         (click)="
           onClick(
-            signupForm.get('email')?.value,
-            signupForm.get('username')?.value
-          )
+            signupForm.get('email')?.value)
         "
         [disabled]="!signupForm.valid"
       >
@@ -119,9 +109,6 @@
 
     <mat-error *ngIf="!emailUnique" class="post-click-error">
       There exists an account with this email!</mat-error>
-
-    <mat-error *ngIf="!usernameUnique" class="post-click-error">
-      There exists an account with ths username!</mat-error>
 
     <a [routerLink]="['/login']">Ke nje llogari? Identifikohu</a>
 
