@@ -3,30 +3,41 @@ import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTre
 import { Observable } from 'rxjs';
 import {AuthenticationService} from "../_services/authentication.service";
 import {MatDialog} from "@angular/material/dialog";
-import {ChangeRootComponent} from "../_shared/change-root/change-root.component";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {ChangeRootComponent} from "../_shared/change-root/change-root.component";
 
 @Injectable({
   providedIn: 'root'
 })
-export class IsloggedoutGuard implements CanActivate {
-  constructor(private authS: AuthenticationService, private router: Router,
+export class JobSeekerGuard implements CanActivate {
+  constructor(private authS: AuthenticationService,
+              private router: Router,
               private dialog: MatDialog,
-              private snackBar: MatSnackBar){}
+              private snackBar: MatSnackBar
+  ) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (!this.authS.isLoggedIn()) return true;
+    if (!this.authS.isRecruiter()) return true;
     this.openDialog()
     return false;
   }
 
   openDialog() {
+    let message: string;
+
+    if(this.authS.isLoggedIn()) {
+      message = 'You will log out to change page!'
+    }
+    else {
+      message = 'You are navigating to Job Finder'
+    }
+
     const dialogRef = this.dialog.open(ChangeRootComponent, {
       data: {
         role: localStorage.getItem('role'),
-        message: 'You will log out to change page!',
+        message: message,
         buttonText: {
           ok: 'Continue',
           cancel: 'Cancel',
@@ -34,16 +45,16 @@ export class IsloggedoutGuard implements CanActivate {
       },
     });
 
-    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
-      if (confirmed) {
-        this.snackBar.open('You have been logged out.', 'OK', {
-          duration: 2000,
-          panelClass: ['blue-snackbar', 'login-snackbar'],
-        });
-      }
-    });
+    if(this.authS.isLoggedIn()){
+      dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+        if (confirmed) {
+          this.snackBar.open('You have been logged out.', 'OK', {
+            duration: 2000,
+            panelClass: ['blue-snackbar', 'login-snackbar'],
+          });
+        }
+      });
+    }
   }
 
 }
-
-

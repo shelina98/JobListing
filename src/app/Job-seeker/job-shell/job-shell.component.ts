@@ -35,10 +35,10 @@ export class JobShellComponent implements OnInit {
     this.filterJob = this._formBuilder.group({
       searchInput: "",
     })
+    localStorage.setItem('role', 'job-seeker')
   }
 
   gotopostjobs(){
-
     this.router.navigate(['/recruiter/job-poster'])
   }
 

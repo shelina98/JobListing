@@ -18,7 +18,13 @@ export class ChangeRootComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) private data: any,
     private dialogRef: MatDialogRef<ChangeRootComponent>) {
     if(data){
-      this.title = 'Go to Post Jobs Page'
+      if(data.role == 'job-seeker')
+      {
+        this.title = 'Go to Post Jobs Page'
+      }
+      else {
+        this.title = 'Go to Job Finder'
+      }
       this.message = data.message;
       if (data.buttonText) {
         this.confirmButtonText = data.buttonText.ok || this.confirmButtonText;
@@ -31,7 +37,18 @@ export class ChangeRootComponent implements OnInit {
     localStorage.removeItem('email');
     localStorage.removeItem('username');
     localStorage.removeItem('uid');
-    this.router.navigate(['/recruiter']);
+    if(localStorage.getItem('role')== 'job-seeker')
+    {
+      this.router.navigate(['/recruiter']);
+
+      localStorage.setItem('role', 'recruiter')
+    }
+else {
+      this.router.navigate(['']);
+
+      localStorage.setItem('role', 'job-seeker')
+    }
+
     this.dialogRef.close(true);
   }
   ngOnInit(): void {

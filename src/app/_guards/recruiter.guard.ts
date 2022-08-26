@@ -33,7 +33,7 @@ export class RecruiterGuard implements CanActivate {
       message = 'You will log out to change page!'
     }
     else {
-      message = 'You are navigating to Job Finder'
+      message = 'You are navigating to Job Poster'
     }
 
     const dialogRef = this.dialog.open(ChangeRootComponent, {

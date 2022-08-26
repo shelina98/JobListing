@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {JobSeekerDashboardComponent} from "./job-seeker-dashboard/job-seeker-dashboard.component";
 import {JobShellComponent} from "./job-shell/job-shell.component";
-import {IsloggedoutGuard} from "../_guards/isloggedout.guard";
 
 const routes: Routes = [
   {
