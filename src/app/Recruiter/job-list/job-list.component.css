@@ -20,3 +20,8 @@ table {
 td, th {
   width: 25%;
 }
+
+th{
+  color: #2557a7;
+  font-size: 14px;
+}

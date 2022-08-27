@@ -1,7 +1,9 @@
 <div class="flex-it" [style.height.%]="height1">
   <mat-form-field appearance="standard">
     <mat-label>Filter</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+    <input matInput
+           (keyup)="applyFilter($event)"
+           placeholder="Search job listing" #input>
   </mat-form-field>
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" matSort>
@@ -11,10 +13,42 @@
         <td mat-cell *matCellDef="let row"> {{row.title}} </td>
       </ng-container>
 
+<!--      &lt;!&ndash; Description &ndash;&gt;-->
+<!--      <ng-container matColumnDef="Date">-->
+<!--        <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>-->
+<!--        <td mat-cell *matCellDef="let row"> {{row.creationdate | date:'DD-MM-YYYY'}}</td>-->
+<!--      </ng-container>-->
+
+
       <!-- Description -->
       <ng-container matColumnDef="Description">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
         <td mat-cell *matCellDef="let row"> {{row.description}}</td>
+      </ng-container>
+
+      <!-- Options (More Icon) -->
+      <ng-container matColumnDef="Options">
+        <th mat-header-cell *matHeaderCellDef>
+        </th>
+        <td mat-cell *matCellDef="let userData" style="text-align: right;">
+          <button mat-icon-button [matMenuTriggerFor]="moreOptions" aria-label="more">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #moreOptions="matMenu">
+            <button mat-menu-item >
+              <mat-icon>info</mat-icon>
+              <span>DETAILS</span>
+            </button>
+            <button mat-menu-item >
+              <mat-icon>edit</mat-icon>
+              <span>MODIFY</span>
+            </button>
+            <button mat-menu-item (click)="deleteItem(userData)">
+              <mat-icon>delete</mat-icon>
+              <span>DELETE</span>
+            </button>
+          </mat-menu>
+        </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

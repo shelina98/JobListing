@@ -24,10 +24,12 @@ import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatTableModule} from "@angular/material/table";
 import {MatSortModule} from "@angular/material/sort";
 import { JobListComponent } from './job-list/job-list.component';
+import {DeleteDialogComponent} from "./delete-dialog/delete-dialog.component";
+import {MatDialogModule} from "@angular/material/dialog";
 
 
 @NgModule({
-  declarations: [ RecruiterNavComponent, RecruiterDashboardComponent, JobPosterComponent,RecruiterShellComponent, JobListComponent,
+  declarations: [ RecruiterNavComponent,DeleteDialogComponent, RecruiterDashboardComponent, JobPosterComponent,RecruiterShellComponent, JobListComponent,
   ],
 
   imports: [
@@ -50,9 +52,11 @@ import { JobListComponent } from './job-list/job-list.component';
     MatSnackBarModule,
     MatPaginatorModule,
     MatTableModule,
-    MatSortModule
+    MatSortModule,
+    MatMenuModule,
+    MatDialogModule
   ],
-  entryComponents:[ChangeRootComponent],
+  entryComponents:[ChangeRootComponent,DeleteDialogComponent],
   exports: [
 
   ],

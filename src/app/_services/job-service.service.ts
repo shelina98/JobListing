@@ -9,7 +9,8 @@ import {User} from "../_models/user.model";
 })
 export class JobServiceService {
 
-  constructor(private _firestore: AngularFirestore) { }
+  constructor(private _firestore: AngularFirestore) {
+  }
 
   getAllJobs(): Observable<Job[]> {
     return this._firestore
@@ -21,6 +22,12 @@ export class JobServiceService {
     return this._firestore.collection('jobs',
       (ref) =>
         ref.where('managerID', '==', localStorage.getItem('uid'))
-    ) .valueChanges() as Observable<Job[]>;
+    ).valueChanges() as Observable<Job[]>;
   }
+
+  deleteJob(jobuid: string) {
+    this._firestore.collection("jobs").doc(jobuid).delete()
+  }
+
+
 }
