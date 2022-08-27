@@ -35,7 +35,7 @@
             <mat-icon>more_vert</mat-icon>
           </button>
           <mat-menu #moreOptions="matMenu">
-            <button mat-menu-item >
+            <button mat-menu-item (click)="detailsItem(userData)" >
               <mat-icon>info</mat-icon>
               <span>DETAILS</span>
             </button>

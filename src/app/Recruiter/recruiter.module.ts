@@ -26,10 +26,10 @@ import {MatSortModule} from "@angular/material/sort";
 import { JobListComponent } from './job-list/job-list.component';
 import {DeleteDialogComponent} from "./delete-dialog/delete-dialog.component";
 import {MatDialogModule} from "@angular/material/dialog";
-
+import {DetailsComponent} from "./details/details.component";
 
 @NgModule({
-  declarations: [ RecruiterNavComponent,DeleteDialogComponent, RecruiterDashboardComponent, JobPosterComponent,RecruiterShellComponent, JobListComponent,
+  declarations: [ RecruiterNavComponent, DetailsComponent,DeleteDialogComponent, RecruiterDashboardComponent, JobPosterComponent,RecruiterShellComponent, JobListComponent,
   ],
 
   imports: [
@@ -54,9 +54,9 @@ import {MatDialogModule} from "@angular/material/dialog";
     MatTableModule,
     MatSortModule,
     MatMenuModule,
-    MatDialogModule
+    MatDialogModule,
   ],
-  entryComponents:[ChangeRootComponent,DeleteDialogComponent],
+  entryComponents:[ChangeRootComponent,DeleteDialogComponent,DetailsComponent],
   exports: [
 
   ],

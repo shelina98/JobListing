@@ -7,9 +7,11 @@ import { AppComponent } from './app.component';
 import {environment} from "../environments/environment";
 import {AngularFireModule} from "@angular/fire";
 import {AngularFirestoreModule} from "@angular/fire/firestore";
+
 import { PageNotFoundComponent } from './_shared/page-not-found/page-not-found.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
@@ -33,6 +35,7 @@ import {RecruiterModule} from "./Recruiter/recruiter.module";
 import {JobSeekerModule} from "./Job-seeker/jobSeeker.module";
 import { ChangeRootComponent } from './_shared/change-root/change-root.component';
 import {MatDialogModule} from "@angular/material/dialog";
+import {NgbModalModule} from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
   declarations: [ AppComponent, PageNotFoundComponent, ChangeRootComponent,],
@@ -61,7 +64,8 @@ import {MatDialogModule} from "@angular/material/dialog";
         LoginAndSignupModule,
         RecruiterModule,
         JobSeekerModule,
-        MatDialogModule
+        MatDialogModule,
+        NgbModalModule
 
     ],
   exports:[

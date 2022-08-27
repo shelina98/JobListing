@@ -14,8 +14,6 @@ export interface DialogData {
   styleUrls: ['./delete-dialog.component.css']
 })
 export class DeleteDialogComponent implements OnInit {
-
-
   constructor(  public dialogRef: MatDialogRef<DeleteDialogComponent>,
                 @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
 

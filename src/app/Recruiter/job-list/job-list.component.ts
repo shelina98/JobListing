@@ -7,6 +7,8 @@ import {JobServiceService} from "../../_services/job-service.service";
 import {MatDialog} from "@angular/material/dialog";
 import {DeleteDialogComponent} from "../delete-dialog/delete-dialog.component";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {DetailsComponent} from "../details/details.component";
 
 @Component({
   selector: 'app-job-list',
@@ -26,7 +28,12 @@ export class JobListComponent implements AfterViewInit {
 
   constructor(private jobService: JobServiceService,
               private dialog: MatDialog,
-              private snack: MatSnackBar) {
+              private snack: MatSnackBar,
+              private mod: NgbModal) {
+         this.getJobs()
+  }
+
+  getJobs() {
     this.jobService.RecruiterJobs().subscribe(
       res => {
         this.covertDate(res)
@@ -35,7 +42,6 @@ export class JobListComponent implements AfterViewInit {
         this.dataSource.sort = this.sort;
       })
   }
-
   covertDate(res: any) {
     console.log('hyri ktu')
     for (let i = 0; i < res.length; i++) {
@@ -83,21 +89,16 @@ export class JobListComponent implements AfterViewInit {
   //     })
   // }
 
-  //
-  // detailsItem(clientModel: Client) {
-  //
-  //   const ref = this.mod.open(DetailsComponent, { centered: true });
-  //
-  //   ref.componentInstance.selectedContact = clientModel;
-  //
-  //   ref.result.then((yes) => {
-  //       this.getClients();
-  //     },
-  //     (cancel) => {
-  //       console.log("Cancel Click");
-  //
-  //     })
-  // }
+
+  detailsItem(job: Job) {
+    this.dialog.open(DetailsComponent,
+      {
+        width: '400px',
+        data: {
+          job: job
+        },
+      });
+  }
 
 
   deleteItem(job: Job) {
@@ -122,13 +123,6 @@ export class JobListComponent implements AfterViewInit {
     this.snack.open('Job deleted successfully', " OK", {
       panelClass: ['red-snackbar']
     });
-    this.jobService.RecruiterJobs().subscribe(
-      res => {
-        this.covertDate(res)
-        this.dataSource = new MatTableDataSource(res);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-      })
-
+    this.getJobs()
   }
 }
