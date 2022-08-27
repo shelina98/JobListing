@@ -29,6 +29,14 @@
         </mat-form-field>
       </div>
       <div>
+        <mat-form-field> <input matInput type="text" id="address" formControlName="address" class="form-control"
+                                placeholder="Address"/>
+          <mat-error *ngIf="jobForm.get('address')?.hasError('required')"
+          >Address is required!</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <div>
         <mat-form-field> <input matInput type="text" id="salary" formControlName="salary" class="form-control"
                                 placeholder="Salary"/>
           <mat-error *ngIf="jobForm.get('salary')?.hasError('required')"
@@ -41,7 +49,7 @@
                   <mat-label>Job type</mat-label>
                   <mat-select formControlName="type">
                     <mat-option value="Full-time">Full-Time</mat-option>
-                    <mat-option value="Part-time">PArt-time</mat-option>
+                    <mat-option value="Part-time">Part-time</mat-option>
                   </mat-select>
                 </mat-form-field>
 

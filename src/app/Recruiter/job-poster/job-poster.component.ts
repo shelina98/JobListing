@@ -23,6 +23,7 @@ export class JobPosterComponent implements OnInit {
     description: ['', [Validators.required]],
     salary: ['', [Validators.required]],
     type: ['', [Validators.required]],
+    address: ['', Validators.required]
 
   }, );
 
@@ -58,6 +59,7 @@ export class JobPosterComponent implements OnInit {
       description: form.get('description')?.value,
       salary: form.get('salary')?.value,
       type: form.get('type')?.value,
+      address: form.get('address')?.value
     })
       .then (
         jobNewRECORD => {

@@ -4,6 +4,7 @@ import {RecruiterDashboardComponent} from "./recruiter-dashboard/recruiter-dashb
 import {RecruiterShellComponent} from "./recruiter-shell/recruiter-shell.component";
 import {JobPosterComponent} from "./job-poster/job-poster.component";
 import {RecruiterGuard} from "../_guards/recruiter.guard";
+import {JobListComponent} from "./job-list/job-list.component";
 
 
 const routes: Routes = [
@@ -20,6 +21,10 @@ const routes: Routes = [
       {
         path:'job-poster',
         component: JobPosterComponent
+      },
+      {
+        path:'job-list',
+        component: JobListComponent
       }
     ]
   }
