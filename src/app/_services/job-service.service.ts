@@ -16,4 +16,10 @@ export class JobServiceService {
       .collection('jobs')
       .valueChanges() as Observable<Job[]>;
   }
+  getCertainsJobs(mangagedId: string): Observable<Job[]> {
+    return this._firestore
+      .collection('jobs', (ref) =>
+        ref.where('managerID', '==', mangagedId))
+      .valueChanges() as Observable<Job[]>;
+  }
 }

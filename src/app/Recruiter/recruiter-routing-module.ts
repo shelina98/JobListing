@@ -19,9 +19,7 @@ const routes: Routes = [
       },
       {
         path:'job-poster',
-        component: JobPosterComponent,
-        canActivate: [RecruiterGuard]
-
+        component: JobPosterComponent
       }
     ]
   }

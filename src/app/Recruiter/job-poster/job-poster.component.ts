@@ -1,14 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AngularFirestore} from "@angular/fire/firestore";
 import { Router} from "@angular/router";
 import {AuthenticationService} from "../../_services/authentication.service";
 import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
-import {DatePipe} from "@angular/common";
 import firebase from "firebase";
-import Timestamp = firebase.firestore.Timestamp;
-import FieldValue = firebase.firestore.FieldValue;
-import {timestamp} from "rxjs/operators";
+
 
 
 @Component({
@@ -18,8 +15,9 @@ import {timestamp} from "rxjs/operators";
 })
 export class JobPosterComponent implements OnInit {
 
-  jobForm = this.fb.group({
+  @Input() height : number | undefined
 
+  jobForm = this.fb.group({
     title: ['', [Validators.required],],
     company: ['', [Validators.required]],
     description: ['', [Validators.required]],
@@ -44,7 +42,10 @@ export class JobPosterComponent implements OnInit {
       if (result.matches) {
         console.log("screens matches HandsetLandscape") }
     });
+
+
   }
+
 
   onClick() {
     this.sendJobInfoTodatabase(this.jobForm);
@@ -64,11 +65,11 @@ export class JobPosterComponent implements OnInit {
             .update(
               {
                 uid: jobNewRECORD.id,
+                managerID: localStorage.getItem('uid'),
                 creationdate: firebase.firestore.FieldValue.serverTimestamp()
               }
             );
         })
-
 
   }
 }

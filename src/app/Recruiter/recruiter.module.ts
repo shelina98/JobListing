@@ -20,6 +20,9 @@ import { JobPosterComponent } from './job-poster/job-poster.component';
 import {ChangeRootComponent} from "../_shared/change-root/change-root.component";
 import { MatSnackBarModule} from "@angular/material/snack-bar";
 import {RecruiterShellComponent} from "./recruiter-shell/recruiter-shell.component";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatTableModule} from "@angular/material/table";
+import {MatSortModule} from "@angular/material/sort";
 
 
 @NgModule({
@@ -43,7 +46,10 @@ import {RecruiterShellComponent} from "./recruiter-shell/recruiter-shell.compone
     MatInputModule,
     MatDividerModule,
     RecruiterRoutingModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatSortModule
   ],
   entryComponents:[ChangeRootComponent],
   exports: [

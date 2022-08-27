@@ -39,3 +39,33 @@
   width: 50%;
 
 }
+
+.recuter-shell-signedIn {
+  display: flex;
+  flex-direction: row;
+  height: calc(100% - 64px);
+  background-color:  #f3f2f1;
+}
+
+.job-list {
+  display: flex;
+  flex-direction: column;
+  padding-left: 20px;
+  width: 70%;
+  background-color: #2557a7;
+}
+.job-detail {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  justify-content: center;
+}
+
+::ng-deep .mat-form-field-prefix {
+  top: 0 !important;
+  font-weight: bold;
+  padding-right: 10px;
+}
+::ng-deep .mat-form-field-suffix {
+  color: gray;
+}

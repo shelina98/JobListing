@@ -1,4 +1,4 @@
-<div class="recruiter-shell">
+<div class="recruiter-shell" *ngIf="!whatWillShow">
   <div class="post-job">
     <div class="title">
       You're here to hire.
@@ -12,5 +12,83 @@
   </div>
   <div class="image">
      <img src="assets/background.PNG" width="70%">
+  </div>
+</div>
+
+
+<div class="recuter-shell-signedIn" *ngIf="whatWillShow">
+  <div class="job-list">
+
+<!--  <mat-form-field appearance="outline" >-->
+<!--    <mat-icon matSuffix>search</mat-icon>-->
+<!--    <p matPrefix > Which </p>-->
+<!--    <input autocomplete="off" matInput  placeholder="Job" >-->
+<!--  </mat-form-field>-->
+
+  <div class="main">
+    <mat-form-field appearance="standard" class="full-width">
+      <mat-label>Search</mat-label>
+       <input matInput
+             placeholder="Search Job listing"
+             name="filter-contacts"/>
+    </mat-form-field>
+
+    <table mat-table matSort [dataSource]="dataSource"  class="mat-elevation-z8" >
+
+      <!-- Title -->
+      <ng-container matColumnDef="Title">
+        <th mat-header-cell *matHeaderCellDef  mat-sort-header sortActionDescription="Sort by name"> Title </th>
+        <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+      </ng-container>
+
+
+      <!--Description -->
+      <ng-container matColumnDef="Description">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
+        <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+      </ng-container>
+
+      <!-- Adress  -->
+      <ng-container matColumnDef="Address">
+        <th mat-header-cell *matHeaderCellDef> Address </th>
+        <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+      </ng-container>
+      <!-- Creation date-->
+
+
+      <!-- Delete Update -->
+      <ng-container matColumnDef="Options">
+        <th mat-header-cell *matHeaderCellDef> Other Options</th>
+        <td mat-cell *matCellDef="let element">
+          <button class="btn btn-outline-secondary"   >  Edit </button>
+          <button class="btn btn-outline-secondary"  >  Details
+          </button>
+          <button class="btn btn-outline-danger"  >
+            Delete
+          </button>
+
+
+
+        </td>
+      </ng-container>
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+
+    </table>
+
+    <mat-paginator  [length]="dataSource.data.length" [pageSize]="5"
+                    [pageSizeOptions]="[5, 10, 15]"> </mat-paginator>
+
+  </div>
+
+</div>
+
+
+
+  <div class="job-detail">
+    <app-job-poster [height]="height" ></app-job-poster>
   </div>
 </div>
