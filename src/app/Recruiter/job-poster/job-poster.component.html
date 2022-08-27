@@ -54,7 +54,7 @@
 
       </div>
       <button type="button" mat-raised-button color="primary"
-        (click)="onClick()" [disabled]="!jobForm.valid">
+        (click)="onClick()" [disabled]="!jobForm.valid && !jobForm.touched">
         {{addOrModify}}
       </button>
 

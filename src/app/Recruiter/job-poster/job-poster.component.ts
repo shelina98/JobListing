@@ -39,7 +39,7 @@ export class JobPosterComponent implements OnInit {
     private as: AuthenticationService,
     private route:ActivatedRoute,
     private responsive: BreakpointObserver,
-    private js:JobServiceService
+    private js:JobServiceService,
   ) {
 
     route.queryParams.subscribe(p => {
@@ -87,7 +87,7 @@ export class JobPosterComponent implements OnInit {
   onClick() {
     if(this.addOrModify == 'ADD')
     this.sendJobInfoTodatabase(this.jobForm);
-    this.updateJob(this.params['uid'], this.jobForm);
+    this.updateJob(JSON.stringify(localStorage.getItem('idToedit')), this.jobForm);
   }
 
   sendJobInfoTodatabase(form: FormGroup) {
@@ -115,6 +115,22 @@ export class JobPosterComponent implements OnInit {
   }
 
   updateJob(uid: string, form: FormGroup) {
-  this.js.edit(uid,form)
+    this.fs.collection('jobs').doc(uid).set(
+      {
+        title: form.get('title')?.value,
+        company: form.get('company')?.value,
+        description: form.get('description')?.value,
+        salary: form.get('salary')?.value,
+        type: form.get('type')?.value,
+        address: form.get('address')?.value,
+        creationdate: firebase.firestore.FieldValue.serverTimestamp()
+
+      }
+    ).then(r => {
+      localStorage.removeItem('idToEdit')
+      this.params = []
+      this.rt.navigate([],)
+    } )
+
   }
 }
