@@ -18,6 +18,7 @@
 
 <div class="recuter-shell-signedIn" *ngIf="whatWillShow">
   <div class="job-list">
+    <app-job-list  [height1]="height"></app-job-list>
   </div>
   <div class="job-detail">
     <app-job-poster [height]="height" ></app-job-poster>

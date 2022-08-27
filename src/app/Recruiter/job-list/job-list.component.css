@@ -1,5 +1,15 @@
+.flex-it {
+  display: flex;
+  flex-direction: column;
+  background-size: cover;
+  height: calc(100% - 64px);
+}
+
 table {
   width: 100%;
+}
+.height {
+  height: calc(100% - 64px);
 }
 
 .mat-form-field {

@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {Job} from "../../_models/job.model";
 import {MatSort} from "@angular/material/sort";
@@ -19,6 +19,7 @@ export class JobListComponent implements AfterViewInit {
   @ViewChild(MatSort, {static:true}) sort!: MatSort;
   @ViewChild(MatPaginator, {static:false}) paginator!: MatPaginator;
 
+  @Input() height1 : number | undefined
 
   constructor(private jobService: JobServiceService) {
     this.jobService.RecruiterJobs().subscribe(
