@@ -23,10 +23,11 @@ import {RecruiterShellComponent} from "./recruiter-shell/recruiter-shell.compone
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatTableModule} from "@angular/material/table";
 import {MatSortModule} from "@angular/material/sort";
+import { JobListComponent } from './job-list/job-list.component';
 
 
 @NgModule({
-  declarations: [ RecruiterNavComponent, RecruiterDashboardComponent, JobPosterComponent,RecruiterShellComponent
+  declarations: [ RecruiterNavComponent, RecruiterDashboardComponent, JobPosterComponent,RecruiterShellComponent, JobListComponent,
   ],
 
   imports: [
