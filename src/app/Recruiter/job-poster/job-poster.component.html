@@ -2,7 +2,6 @@
   <mat-card class="signup-form">
 
     <form [formGroup] ='jobForm' class="form-group">
-
 <!--      <mat-card-header> <label>Add Job</label></mat-card-header>-->
       <div>
         <mat-form-field> <input matInput type="text" id="title" formControlName="title" class="form-control"
@@ -54,11 +53,11 @@
                 </mat-form-field>
 
       </div>
-
       <button type="button" mat-raised-button color="primary"
         (click)="onClick()" [disabled]="!jobForm.valid">
-        ADD
+        {{addOrModify}}
       </button>
+
     </form>
   </mat-card>
 </div>

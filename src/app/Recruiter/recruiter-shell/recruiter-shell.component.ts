@@ -1,6 +1,7 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {AuthenticationService} from "../../_services/authentication.service";
 import {JobServiceService} from "../../_services/job-service.service";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-recruiter-shell',
@@ -13,6 +14,7 @@ export class RecruiterShellComponent implements OnInit {
 
   constructor(private authS: AuthenticationService,) {
     localStorage.setItem('role','recruiter')
+
   }
 
   async ngOnInit() {

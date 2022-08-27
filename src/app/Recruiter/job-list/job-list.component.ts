@@ -9,6 +9,7 @@ import {DeleteDialogComponent} from "../delete-dialog/delete-dialog.component";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {DetailsComponent} from "../details/details.component";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-job-list',
@@ -29,7 +30,7 @@ export class JobListComponent implements AfterViewInit {
   constructor(private jobService: JobServiceService,
               private dialog: MatDialog,
               private snack: MatSnackBar,
-              private mod: NgbModal) {
+              private router: Router,) {
          this.getJobs()
   }
 
@@ -74,20 +75,22 @@ export class JobListComponent implements AfterViewInit {
 
   // }
   //
-  // editItem(clientModel: Client, id: number) {
-  //
-  //   const ref = this.mod.open(EditUserComponent, { centered: true });
-  //   ref.componentInstance.selectedContact = clientModel;
-  //   ref.componentInstance.Id = id;
-  //
-  //   ref.result.then((yes) => {
-  //       this.getClients()
-  //     },
-  //     (cancel) => {
-  //       console.log("Cancel Click");
-  //
-  //     })
-  // }
+
+  editItem(job: Job) {
+   this.router.navigate([],
+     {
+       queryParams: {
+         id:job.uid,
+         modify: 'modify',
+         title: job.title,
+         company: job.company,
+         description: job.description,
+         address: job.address,
+         salary:job.salary,
+         type: job.type
+       },
+     })
+  }
 
 
   detailsItem(job: Job) {
@@ -100,14 +103,11 @@ export class JobListComponent implements AfterViewInit {
       });
   }
 
-
   deleteItem(job: Job) {
     const dialogRef = this.dialog.open(DeleteDialogComponent,
       {
         width: '250px',
         data: {
-          name: localStorage.getItem("username"),
-          title: job.title,
           job: job
         },
       });

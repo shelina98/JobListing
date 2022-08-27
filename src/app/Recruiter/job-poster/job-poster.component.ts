@@ -1,10 +1,11 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AngularFirestore} from "@angular/fire/firestore";
-import { Router} from "@angular/router";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 import {AuthenticationService} from "../../_services/authentication.service";
 import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 import firebase from "firebase";
+import {JobServiceService} from "../../_services/job-service.service";
 
 
 
@@ -13,9 +14,11 @@ import firebase from "firebase";
   templateUrl: './job-poster.component.html',
   styleUrls: ['./job-poster.component.css']
 })
+
 export class JobPosterComponent implements OnInit {
 
   @Input() height : number | undefined
+  addOrModify: string = 'ADD'
 
   jobForm = this.fb.group({
     title: ['', [Validators.required],],
@@ -25,17 +28,41 @@ export class JobPosterComponent implements OnInit {
     type: ['', [Validators.required]],
     address: ['', Validators.required]
 
-  }, );
-
+  },
+  );
+  private params!: Params;
 
   constructor(
     private fb: FormBuilder,
     private fs: AngularFirestore,
     private rt: Router,
     private as: AuthenticationService,
+    private route:ActivatedRoute,
     private responsive: BreakpointObserver,
+    private js:JobServiceService
   ) {
 
+    route.queryParams.subscribe(p => {
+     if(p['modify']) {
+       this.params = p
+       this.addOrModify = 'Update';
+       this.setForm()
+     }
+
+     else {
+
+       this.addOrModify = 'ADD';
+       this.jobForm = this.fb.group({
+           title: ['', [Validators.required],],
+           company: ['', [Validators.required]],
+           description: ['', [Validators.required]],
+           salary: ['', [Validators.required]],
+           type: ['', [Validators.required]],
+           address: ['', Validators.required]
+         },
+       );}
+    }
+    );
   }
 
   ngOnInit() {
@@ -43,14 +70,26 @@ export class JobPosterComponent implements OnInit {
       if (result.matches) {
         console.log("screens matches HandsetLandscape") }
     });
-
-
   }
 
+  private setForm() {
+    this.jobForm = this.fb.group({
+      title: [this.route.snapshot.queryParams['title'], Validators.required],
+      company: [this.route.snapshot.queryParams['company'], Validators.required],
+      creationDate: [this.route.snapshot.queryParams['creationDate'], Validators.required],
+      address: [this.route.snapshot.queryParams['address'], Validators.required],
+      salary: [this.route.snapshot.queryParams['salary'], Validators.required],
+      description: [this.route.snapshot.queryParams['description'], Validators.required],
+      type: [this.route.snapshot.queryParams['type'], Validators.required]
+    });
+  }
 
   onClick() {
+    if(this.addOrModify == 'ADD')
     this.sendJobInfoTodatabase(this.jobForm);
+    this.updateJob(this.params['uid'], this.jobForm);
   }
+
   sendJobInfoTodatabase(form: FormGroup) {
     this.fs.collection('jobs').add({
       uid: '',
@@ -73,5 +112,9 @@ export class JobPosterComponent implements OnInit {
             );
         })
 
+  }
+
+  updateJob(uid: string, form: FormGroup) {
+  this.js.edit(uid,form)
   }
 }
