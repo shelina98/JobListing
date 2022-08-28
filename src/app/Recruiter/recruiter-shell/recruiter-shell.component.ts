@@ -23,6 +23,9 @@ export class RecruiterShellComponent implements OnInit {
       if (p['modify']) {
         this.Editmode = true
       }
+      else {
+        this.Editmode = false
+      }
     })
 
   }

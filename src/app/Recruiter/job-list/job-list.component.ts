@@ -122,7 +122,7 @@ export class JobListComponent implements AfterViewInit {
   DeleteJobs(job: string) {
     this.jobService.deleteJob(job);
     this.snack.open('Job deleted successfully', " OK", {
-      panelClass: ['red-snackbar']
+      panelClass: ['blue-snackbar', 'login-snackbar']
     });
     this.getJobs()
   }

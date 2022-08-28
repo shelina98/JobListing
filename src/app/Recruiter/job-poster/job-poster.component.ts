@@ -6,6 +6,7 @@ import {AuthenticationService} from "../../_services/authentication.service";
 import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 import firebase from "firebase";
 import {JobServiceService} from "../../_services/job-service.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 
 
@@ -38,7 +39,7 @@ export class JobPosterComponent implements OnInit {
     private as: AuthenticationService,
     private route:ActivatedRoute,
     private responsive: BreakpointObserver,
-    private js:JobServiceService,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
@@ -83,6 +84,14 @@ export class JobPosterComponent implements OnInit {
               address: ['', Validators.required]
             },
           );
+
+          this.snackBar.open('Job Successfully added.', 'OK', {
+            duration: 2000,
+            panelClass: ['blue-snackbar', 'login-snackbar'],
+          });
+
         })
+
+
   }
 }

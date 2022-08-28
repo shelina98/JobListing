@@ -76,7 +76,6 @@ export class JobEditerComponent implements OnInit {
   }
 
   updateJob(uid: string, form: FormGroup) {
-   console.log(form.get('title')?.value, form.get('company')?.value,)
     this.fs.collection('jobs')
       .doc(uid).update(
       {
@@ -87,7 +86,28 @@ export class JobEditerComponent implements OnInit {
         type: form.get('type')?.value,
         address: form.get('address')?.value,
       }
-    ).then(
+      )
 
-    )}
+    this.rt.navigate([],{
+      queryParams : {
+        'modify': null,
+        'uid':null,
+        'title' : null,
+        'company': null,
+        'address': null,
+        'salary': null,
+        'description': null,
+        'type':null
+      },
+      queryParamsHandling: 'merge'
+    })
+
+    this.snackBar.open('Job Successfully updated.', 'OK', {
+      duration: 2000,
+      panelClass: ['blue-snackbar', 'login-snackbar'],
+    });
+
+  }
+
 }
+
