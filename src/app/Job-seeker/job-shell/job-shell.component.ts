@@ -26,6 +26,7 @@ export class JobShellComponent implements OnInit {
       res => {
         if(res.length != 0)
         {
+          console.log(res)
           this.jobs = res
         }
       });
@@ -39,7 +40,7 @@ export class JobShellComponent implements OnInit {
   }
 
   gotopostjobs(){
-    this.router.navigate(['/recruiter/job-poster'])
+    this.router.navigate(['/recruiter'])
   }
 
   // filterJobs(filterValue: string) {

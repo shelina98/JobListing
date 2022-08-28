@@ -4,6 +4,7 @@ import {AngularFirestore} from "@angular/fire/firestore";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AuthenticationService} from "../../_services/authentication.service";
 import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-job-editer',
@@ -29,6 +30,7 @@ export class JobEditerComponent implements OnInit {
   private salary: any;
   private description: any;
   private type: any;
+  private uid: any;
   constructor(
     private fb: FormBuilder,
     private fs: AngularFirestore,
@@ -36,9 +38,11 @@ export class JobEditerComponent implements OnInit {
     private as: AuthenticationService,
     private route:ActivatedRoute,
     private responsive: BreakpointObserver,
+    private snackBar: MatSnackBar
   ) {
 
     route.queryParams.subscribe(p => {
+      this.uid = this.route.snapshot.queryParams['uid']
       this.title = this.route.snapshot.queryParams['title']
       this.address = this.route.snapshot.queryParams['address']
       this.salary = this.route.snapshot.queryParams['salary']
@@ -67,13 +71,13 @@ export class JobEditerComponent implements OnInit {
     });
   }
 
-  async onClick() {
-    await this.updateJob(JSON.stringify(localStorage.getItem('idToedit')), this.jobForm);
+   onClick() {
+     this.updateJob(this.uid,this.jobForm);
   }
 
- async updateJob(uid: string, form: FormGroup) {
-    console.log(uid)
-    this.fs.collection('jobs',)
+  updateJob(uid: string, form: FormGroup) {
+   console.log(form.get('title')?.value, form.get('company')?.value,)
+    this.fs.collection('jobs')
       .doc(uid).update(
       {
         title: form.get('title')?.value,
@@ -83,8 +87,7 @@ export class JobEditerComponent implements OnInit {
         type: form.get('type')?.value,
         address: form.get('address')?.value,
       }
-    ).then(function() {
-      console.log("Document successfully updated!");
-    })
-  }
+    ).then(
+
+    )}
 }

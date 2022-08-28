@@ -77,7 +77,7 @@ export class JobListComponent implements AfterViewInit {
   //
 
   editItem(job: Job) {
-    localStorage.setItem('idToedit', job.uid)
+    // localStorage.setItem('idToedit', job.uid)
      this.router.navigate([],
      {
        queryParams: {
@@ -87,7 +87,8 @@ export class JobListComponent implements AfterViewInit {
          description: job.description,
          address: job.address,
          salary:job.salary,
-         type: job.type
+         type: job.type,
+         uid:job.uid
        },
      })
   }

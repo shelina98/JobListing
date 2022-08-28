@@ -16,6 +16,7 @@
     <div class="postjob" (click)="gotopostjobs()"> Post a Job as Recruiter </div>
   </div>
   <div class="jobs-feed" >
+
     <div class="job-list">
       <div *ngFor="let job of jobs" style="margin-bottom: 20px">
         <mat-card class="example-card">
@@ -25,16 +26,17 @@
           <mat-card-content>
             <p>{{longText}}</p>
           </mat-card-content>
-          <mat-card-actions>
-            <button mat-button>LIKE</button>
-            <button mat-button>SHARE</button>
-          </mat-card-actions>
+<!--          <mat-card-actions>-->
+<!--            <button mat-button>LIKE</button>-->
+<!--            <button mat-button>SHARE</button>-->
+<!--          </mat-card-actions>-->
 <!--          <mat-card-footer>-->
 <!--            <mat-progress-bar mode="indeterminate"></mat-progress-bar>-->
 <!--          </mat-card-footer>-->
         </mat-card>
       </div>
     </div>
+
     <div class="detail-container">
       <app-job-detail></app-job-detail>
     </div>

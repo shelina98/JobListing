@@ -77,8 +77,6 @@ export class SignupComponent implements OnInit {
 
   }
 
-
-
   signUpAccordingToRoles() {
 
     this.sendUserInfoTodatabase(this.signupForm);
@@ -117,8 +115,8 @@ export class SignupComponent implements OnInit {
               );
               localStorage.setItem('uid',USERnewRECORD.id);
         })
-
-
   }
+
+
 
 }
