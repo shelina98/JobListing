@@ -20,6 +20,14 @@ export class JobServiceService {
       .valueChanges() as Observable<Job[]>;
   }
 
+  getCertainJob(uid: string | undefined): Observable<User[]> {
+    return this._firestore
+      .collection('jobs',
+        (ref) =>
+          ref.where('uid', '==', uid))
+      .valueChanges() as Observable<User[]>;
+  }
+
   RecruiterJobs() {
     return this._firestore.collection('jobs',
       (ref) =>

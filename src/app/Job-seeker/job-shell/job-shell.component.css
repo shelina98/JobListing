@@ -86,3 +86,9 @@ button {
   max-width: 400px;
 }
 
+.active{
+  border:1px solid #2557ae;
+  /*background-color: #3d6e94;*/
+  /*color: white;*/
+
+}

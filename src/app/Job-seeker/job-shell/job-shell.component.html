@@ -18,8 +18,8 @@
   <div class="jobs-feed" >
 
     <div class="job-list">
-      <div *ngFor="let job of jobs" style="margin-bottom: 20px">
-        <mat-card class="example-card">
+      <div *ngFor="let job of jobs" style="margin-bottom: 20px" >
+        <mat-card class="example-card" (click)="active(job)" [ngClass]="{'active': index===job.uid}">
           <mat-card-title>{{job.title}}</mat-card-title>
           <mat-card-subtitle>{{job.company}}</mat-card-subtitle>
           <mat-divider inset></mat-divider>
@@ -38,7 +38,7 @@
     </div>
 
     <div class="detail-container">
-      <app-job-detail></app-job-detail>
+      <app-job-detail [job]="selectedJob"></app-job-detail>
     </div>
   </div>
 

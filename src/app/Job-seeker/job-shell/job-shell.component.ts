@@ -14,6 +14,8 @@ export class JobShellComponent implements OnInit {
   filterJob!: FormGroup;
   searchQ: string = ""
   jobs: Job[] = []
+  selectedJob!:Job
+  index!:string
   longText = `The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog
   from Japan. A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was
   originally bred for hunting.`;
@@ -28,6 +30,8 @@ export class JobShellComponent implements OnInit {
         {
           console.log(res)
           this.jobs = res
+          this.selectedJob = res[0]
+          this.index= this.selectedJob.uid
         }
       });
   }
@@ -41,6 +45,12 @@ export class JobShellComponent implements OnInit {
 
   gotopostjobs(){
     this.router.navigate(['/recruiter'])
+  }
+
+  active(job:Job){
+    this.selectedJob = job;
+    this.index = this.selectedJob.uid
+    console.log(this.selectedJob)
   }
 
   // filterJobs(filterValue: string) {
