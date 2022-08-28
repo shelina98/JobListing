@@ -15,10 +15,10 @@ export class JobDetailComponent implements OnInit {
 
   ngOnInit(): void {
 
-    // this.jobS.getCertainJob().subscribe(
-    //   res=> {
-    //     console.log(res)
-    //   }
+    this.jobS.getAllJobs().subscribe(
+      res=> {
+       this.jobs = res[0]
+      })
 
   }
 
