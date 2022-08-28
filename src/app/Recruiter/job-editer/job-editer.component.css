@@ -1,0 +1,51 @@
+.flex-it {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #f3f2f1;
+  background-size: cover;
+  height: calc(100% - 64px);
+}
+
+.signup-form {
+  display: inline-block;
+  width: fit-content;
+  background-color: rgba(255, 255, 256, 1);
+  padding: 2vh 7vw;
+}
+
+.mat-card-header {
+  display: inline-block;
+  color: #676767;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.37rem;
+}
+
+.mat-raised-button {
+  background-color: cornflowerblue;
+  color: white;
+  font-family: "Montserrat", sans-serif;
+  margin: 2vh 0;
+}
+
+.mat-form-field {
+  margin-bottom: 1vh;
+}
+
+a {
+  text-decoration: none;
+  color: #4d4d4d;
+  font-family: "Montserrat", sans-serif;
+  font-size: smaller;
+}
+
+a:hover {
+  color: #3d6e94;
+}
+
+.post-click-error {
+  font-size: smaller;
+}
+
+

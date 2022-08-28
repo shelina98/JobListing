@@ -27,9 +27,10 @@ import { JobListComponent } from './job-list/job-list.component';
 import {DeleteDialogComponent} from "./delete-dialog/delete-dialog.component";
 import {MatDialogModule} from "@angular/material/dialog";
 import {DetailsComponent} from "./details/details.component";
+import {JobEditerComponent} from "./job-editer/job-editer.component";
 
 @NgModule({
-  declarations: [ RecruiterNavComponent, DetailsComponent,DeleteDialogComponent, RecruiterDashboardComponent, JobPosterComponent,RecruiterShellComponent, JobListComponent,
+  declarations: [ RecruiterNavComponent,JobEditerComponent, DetailsComponent,DeleteDialogComponent, RecruiterDashboardComponent, JobPosterComponent,RecruiterShellComponent, JobListComponent,
   ],
 
   imports: [

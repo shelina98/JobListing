@@ -20,7 +20,13 @@
   <div class="job-list">
     <app-job-list  [height1]="height"></app-job-list>
   </div>
-  <div class="job-detail">
+
+  <div class="job-detail" *ngIf="!Editmode">
     <app-job-poster [height]="height"  ></app-job-poster>
   </div>
+
+  <div class="job-detail" *ngIf="Editmode">
+    <app-job-editer [height]="height"></app-job-editer>
+  </div>
+
 </div>

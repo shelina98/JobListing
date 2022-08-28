@@ -18,7 +18,6 @@ import {JobServiceService} from "../../_services/job-service.service";
 export class JobPosterComponent implements OnInit {
 
   @Input() height : number | undefined
-  addOrModify: string = 'ADD'
 
   jobForm = this.fb.group({
     title: ['', [Validators.required],],
@@ -30,8 +29,8 @@ export class JobPosterComponent implements OnInit {
 
   },
   );
-  private params!: Params;
 
+  private params!: Params;
   constructor(
     private fb: FormBuilder,
     private fs: AngularFirestore,
@@ -40,30 +39,7 @@ export class JobPosterComponent implements OnInit {
     private route:ActivatedRoute,
     private responsive: BreakpointObserver,
     private js:JobServiceService,
-  ) {
-
-    route.queryParams.subscribe(p => {
-     if(p['modify']) {
-       this.params = p
-       this.addOrModify = 'Update';
-       this.setForm()
-     }
-
-     else {
-
-       this.addOrModify = 'ADD';
-       this.jobForm = this.fb.group({
-           title: ['', [Validators.required],],
-           company: ['', [Validators.required]],
-           description: ['', [Validators.required]],
-           salary: ['', [Validators.required]],
-           type: ['', [Validators.required]],
-           address: ['', Validators.required]
-         },
-       );}
-    }
-    );
-  }
+  ) {}
 
   ngOnInit() {
     this.responsive.observe(Breakpoints.HandsetLandscape).subscribe(result => {
@@ -72,22 +48,8 @@ export class JobPosterComponent implements OnInit {
     });
   }
 
-  private setForm() {
-    this.jobForm = this.fb.group({
-      title: [this.route.snapshot.queryParams['title'], Validators.required],
-      company: [this.route.snapshot.queryParams['company'], Validators.required],
-      creationDate: [this.route.snapshot.queryParams['creationDate'], Validators.required],
-      address: [this.route.snapshot.queryParams['address'], Validators.required],
-      salary: [this.route.snapshot.queryParams['salary'], Validators.required],
-      description: [this.route.snapshot.queryParams['description'], Validators.required],
-      type: [this.route.snapshot.queryParams['type'], Validators.required]
-    });
-  }
-
   onClick() {
-    if(this.addOrModify == 'ADD')
-    this.sendJobInfoTodatabase(this.jobForm);
-    this.updateJob(JSON.stringify(localStorage.getItem('idToedit')), this.jobForm);
+      this.sendJobInfoTodatabase(this.jobForm);
   }
 
   sendJobInfoTodatabase(form: FormGroup) {
@@ -110,27 +72,17 @@ export class JobPosterComponent implements OnInit {
                 creationdate: firebase.firestore.FieldValue.serverTimestamp()
               }
             );
+
+          this.rt.navigate([],)
+          this.jobForm = this.fb.group({
+              title: ['', [Validators.required],],
+              company: ['', [Validators.required]],
+              description: ['', [Validators.required]],
+              salary: ['', [Validators.required]],
+              type: ['', [Validators.required]],
+              address: ['', Validators.required]
+            },
+          );
         })
-
-  }
-
-  updateJob(uid: string, form: FormGroup) {
-    this.fs.collection('jobs').doc(uid).set(
-      {
-        title: form.get('title')?.value,
-        company: form.get('company')?.value,
-        description: form.get('description')?.value,
-        salary: form.get('salary')?.value,
-        type: form.get('type')?.value,
-        address: form.get('address')?.value,
-        creationdate: firebase.firestore.FieldValue.serverTimestamp()
-
-      }
-    ).then(r => {
-      localStorage.removeItem('idToEdit')
-      this.params = []
-      this.rt.navigate([],)
-    } )
-
   }
 }
