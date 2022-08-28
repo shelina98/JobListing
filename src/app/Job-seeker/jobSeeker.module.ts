@@ -21,6 +21,7 @@ import {MatDividerModule} from "@angular/material/divider";
 import {MatInputModule} from "@angular/material/input";
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import {UsersService} from "../_services/users.service";
+import { ProfileEditComponent } from './user-profile/profile-edit/profile-edit.component';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import {UsersService} from "../_services/users.service";
      JobSeekerDashboardComponent,
      JobShellComponent,
      UserProfileComponent,
+     ProfileEditComponent,
   ],
 
   imports: [

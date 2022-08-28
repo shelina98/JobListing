@@ -8,6 +8,7 @@ import { AuthenticationService } from 'src/app/_services/authentication.service'
 import {PasswordValidator} from "src/app/_validators/password.validator";
 import {Breakpoints} from '@angular/cdk/layout';
 import {BreakpointObserver} from '@angular/cdk/layout'
+import {AngularFireStorage} from "@angular/fire/storage";
 
 @Component({
   selector: 'app-signup',
@@ -34,6 +35,8 @@ export class SignupComponent implements OnInit {
     cpassword: ['', [Validators.required, Validators.minLength(8)]],
 
   }, {validator: PasswordValidator});
+  // private image!: File;
+  private image!: File;
 
 
   constructor(
@@ -42,7 +45,8 @@ export class SignupComponent implements OnInit {
     private rt: Router,
     private as: AuthenticationService,
     private responsive: BreakpointObserver,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private fireStorage: AngularFireStorage
   ) {
 
   }
@@ -97,26 +101,42 @@ export class SignupComponent implements OnInit {
 
   sendUserInfoTodatabase(form: FormGroup) {
 
-    this.fs.collection('users').add({
-      uid: '',
-      username: form.get('username')?.value,
-      email: form.get('email')?.value,
-      password: form.get('password')?.value,
-      cpassword: form.get('cpassword')?.value,
-      role: this.role,
-    })
-      .then (
-        USERnewRECORD => {
-              this.fs.collection('users').doc(USERnewRECORD.id)
-                .update(
-                {
-                  uid: USERnewRECORD.id
-                }
-              );
-              localStorage.setItem('uid',USERnewRECORD.id);
+    // this.fs.collection('users').add({
+    //   uid: '',
+    //   username: form.get('username')?.value,
+    //   email: form.get('email')?.value,
+    //   password: form.get('password')?.value,
+    //   cpassword: form.get('cpassword')?.value,
+    //   role: this.role,
+    // })
+    //   .then (
+    //     USERnewRECORD => {
+    //           this.fs.collection('users').doc(USERnewRECORD.id)
+    //             .update(
+    //             {
+    //               uid: USERnewRECORD.id
+    //             }
+    //           );
+    //           localStorage.setItem('uid',USERnewRECORD.id);
+    //     })
+
+        this.fs.collection('users').add( {
+          uid: '',
+          username: form.get('username')?.value,
+          email: form.get('email')?.value,
+          password: form.get('password')?.value,
+          cpassword: form.get('cpassword')?.value,
+          role: this.role,
+          imgUrl: ''
         })
+            .then (
+              UsernewRECORD => {
+                this.fs.collection('users').doc(UsernewRECORD.id).update(
+                  {
+                    uid: UsernewRECORD.id
+                  }
+                );
+                localStorage.setItem('uid',UsernewRECORD.id);
+              })
   }
-
-
-
 }

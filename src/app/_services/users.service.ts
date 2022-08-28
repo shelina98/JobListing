@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import {AngularFireStorage} from "@angular/fire/storage";
 import {Observable} from "rxjs";
 import {User} from "../_models/user.model";
+import {NgForm} from "@angular/forms";
 
 @Injectable({
   providedIn: 'root',
@@ -43,34 +44,5 @@ export class UsersService {
   // }
 
 
-  editProduct(user: User,
-              image: File | undefined): any {
-    if(image) {
-      return new Promise((resolve, reject) => {
-        let ref = this.fireStorage.ref('jobs' + image.name)
-        ref.put(image).then(() => {
-          ref.getDownloadURL().subscribe(imgUrl => {
-            this.fs.collection('users').doc(user.uid).update(
-              {
-                username: user.username,
-                // skills: user.skills,
-                imgUrl: imgUrl
-              }
-            )
-          })
-        })
-      })
-
-    }
-    else {
-      this.fs.collection('users').doc(user.uid).update(
-        {
-          username: user.username,
-          // skills: skills,
-        }
-      )
-
-    }
-  }
 
 }
