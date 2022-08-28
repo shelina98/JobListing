@@ -2,7 +2,7 @@
   <mat-form-field appearance="standard">
     <mat-label>Filter</mat-label>
     <input matInput
-           (keyup)="applyFilter($event)"
+           (keyup)="applyFilter($event)" (focus)="setupFilter('title')"
            placeholder="Search job listing" #input>
   </mat-form-field>
   <div class="mat-elevation-z8">

@@ -7,9 +7,8 @@ import {JobServiceService} from "../../_services/job-service.service";
 import {MatDialog} from "@angular/material/dialog";
 import {DeleteDialogComponent} from "../delete-dialog/delete-dialog.component";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {DetailsComponent} from "../details/details.component";
-import {ActivatedRoute, Router} from "@angular/router";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-job-list',
@@ -56,6 +55,7 @@ export class JobListComponent implements AfterViewInit {
   }
 
   ngOnInit() {
+
   }
 
   applyFilter(event: Event) {
@@ -66,15 +66,12 @@ export class JobListComponent implements AfterViewInit {
     }
   }
 
-
-  // EditContact(client) {
-  //   console.log(client, 'client')
-  //   this.contactSer.EditContact(client).subscribe(
-  //     data => console.log("Success")
-  //   )
-
-  // }
-  //
+  setupFilter(column: string) {
+    this.dataSource.filterPredicate = (d:  any, filter: string) => {
+      const textToSearch = d[column] && d[column].toLowerCase() || '';
+      return textToSearch.indexOf(filter) !== -1;
+    };
+  }
 
   editItem(job: Job) {
     // localStorage.setItem('idToedit', job.uid)
