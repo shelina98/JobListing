@@ -20,8 +20,7 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatDividerModule} from "@angular/material/divider";
 import {MatInputModule} from "@angular/material/input";
 import { UserProfileComponent } from './user-profile/user-profile.component';
-import { ProfileCardComponent } from './profile-card/profile-card.component';
-import {NgxFlowModule} from "@flowjs/ngx-flow";
+import {UsersService} from "../_services/users.service";
 
 
 @NgModule({
@@ -31,7 +30,6 @@ import {NgxFlowModule} from "@flowjs/ngx-flow";
      JobSeekerDashboardComponent,
      JobShellComponent,
      UserProfileComponent,
-     ProfileCardComponent
   ],
 
   imports: [
@@ -51,10 +49,11 @@ import {NgxFlowModule} from "@flowjs/ngx-flow";
     MatInputModule,
     JobSeekerRoutingModule,
     MatDividerModule,
-    NgxFlowModule,
 
 
   ],
+
+     providers:[UsersService],
     entryComponents:[ChangeRootComponent],
     exports: [
         JobDetailComponent,

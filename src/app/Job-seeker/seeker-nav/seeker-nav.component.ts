@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Router, } from '@angular/router';
 import {AuthenticationService} from "../../_services/authentication.service";
+import {UsersService} from "../../_services/users.service";
 
 @Component({
   selector: 'app-seeker-nav',
@@ -14,7 +15,8 @@ export class SeekerNavComponent implements OnInit {
   signinOR : string = "Sign In"
 
   constructor(private router: Router,
-              private authS: AuthenticationService) { }
+              private authS: AuthenticationService,
+              private us:UsersService) { }
 
   ngOnInit(): void {
     this.isLoggedIn = this.authS.isLoggedIn()
@@ -22,6 +24,7 @@ export class SeekerNavComponent implements OnInit {
       this.signinOR = "Log Out"
     }
     this.username = localStorage.getItem('username')
+
   }
 
 
@@ -45,7 +48,7 @@ export class SeekerNavComponent implements OnInit {
 
   }
   goToPRofile() {
-    this.router.navigate(['/profile'])
+    this.router.navigate(['/profile',])
   }
 
   recruiterPage() {
