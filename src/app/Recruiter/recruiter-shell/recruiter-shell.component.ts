@@ -1,6 +1,6 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {AuthenticationService} from "../../_services/authentication.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 
 @Component({
@@ -15,7 +15,8 @@ export class RecruiterShellComponent implements OnInit {
 
 
   constructor(private authS: AuthenticationService,
-              private route:ActivatedRoute) {
+              private route:ActivatedRoute,
+              private router: Router) {
 
     localStorage.setItem('role','recruiter')
 
@@ -28,6 +29,10 @@ export class RecruiterShellComponent implements OnInit {
       }
     })
 
+  }
+
+  gotopostjob() {
+    this.router.navigate(['recruiter/job-poster'])
   }
 
   async ngOnInit() {

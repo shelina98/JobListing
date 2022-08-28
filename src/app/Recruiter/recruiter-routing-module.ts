@@ -5,6 +5,7 @@ import {RecruiterShellComponent} from "./recruiter-shell/recruiter-shell.compone
 import {JobPosterComponent} from "./job-poster/job-poster.component";
 import {RecruiterGuard} from "../_guards/recruiter.guard";
 import {JobListComponent} from "./job-list/job-list.component";
+import {AuthenticationGuard} from "../_guards/authentication.guard";
 
 
 const routes: Routes = [
@@ -20,11 +21,13 @@ const routes: Routes = [
       },
       {
         path:'job-poster',
-        component: JobPosterComponent
+        component: JobPosterComponent,
+        canActivate:[AuthenticationGuard]
       },
       {
         path:'job-list',
-        component: JobListComponent
+        component: JobListComponent,
+        canActivate:[AuthenticationGuard]
       }
     ]
   }
