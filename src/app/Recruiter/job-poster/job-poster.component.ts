@@ -91,7 +91,5 @@ export class JobPosterComponent implements OnInit {
           });
 
         })
-
-
   }
 }

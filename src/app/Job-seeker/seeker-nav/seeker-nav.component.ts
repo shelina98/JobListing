@@ -44,6 +44,9 @@ export class SeekerNavComponent implements OnInit {
     }
 
   }
+  goToPRofile() {
+    this.router.navigate(['/profile'])
+  }
 
   recruiterPage() {
     this.router.navigate(['/recruiter'])

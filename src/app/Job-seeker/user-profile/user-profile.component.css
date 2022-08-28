@@ -1,0 +1,21 @@
+.profile-shell {
+  display: flex;
+  height: calc(100% - 64px);
+  flex-direction: row;
+}
+.profile {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #2557a7;
+  width: 50%;
+}
+.love-interviews {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  background-color: red;
+}
