@@ -84,10 +84,8 @@ export class SignupComponent implements OnInit {
   signUpAccordingToRoles() {
 
     this.sendUserInfoTodatabase(this.signupForm);
-
     localStorage.setItem('email', this.signupForm.get('email')?.value);
     localStorage.setItem('username', this.signupForm.get('username')?.value);
-
     this.as.setLoggedIn(true);
 
     if (this.role === 'recruiter') {
@@ -100,26 +98,6 @@ export class SignupComponent implements OnInit {
   }
 
   sendUserInfoTodatabase(form: FormGroup) {
-
-    // this.fs.collection('users').add({
-    //   uid: '',
-    //   username: form.get('username')?.value,
-    //   email: form.get('email')?.value,
-    //   password: form.get('password')?.value,
-    //   cpassword: form.get('cpassword')?.value,
-    //   role: this.role,
-    // })
-    //   .then (
-    //     USERnewRECORD => {
-    //           this.fs.collection('users').doc(USERnewRECORD.id)
-    //             .update(
-    //             {
-    //               uid: USERnewRECORD.id
-    //             }
-    //           );
-    //           localStorage.setItem('uid',USERnewRECORD.id);
-    //     })
-
         this.fs.collection('users').add( {
           uid: '',
           username: form.get('username')?.value,
