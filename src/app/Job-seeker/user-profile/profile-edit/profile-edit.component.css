@@ -23,27 +23,14 @@
 
 .mat-button {
   background-color: lightgray;
-  color: white;
+  color: black;
   font-family: "Montserrat", sans-serif;
 }
 .mat-button:hover{
   background-color: #2557a7;
+  color: white;
+
 }
 .mat-form-field {
   margin-bottom: 1vh;
-}
-
-a {
-  text-decoration: none;
-  color: #4d4d4d;
-  font-family: "Montserrat", sans-serif;
-  font-size: smaller;
-}
-
-a:hover {
-  color: #3d6e94;
-}
-
-.post-click-error {
-  font-size: smaller;
 }

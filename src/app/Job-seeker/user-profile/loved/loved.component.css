@@ -3,8 +3,8 @@
   flex-direction: column;
   background-size: cover;
   max-height: 100%;
-}
 
+}
 .mat-elevation-z8 {
   max-height: 100%;
   overflow-y: auto;
@@ -12,19 +12,28 @@
 table {
   width: 100%;
 }
-
-
-.mat-form-field {
-  font-size: 14px;
-  width: 100%;
-}
-
-td, th {
-  width: 25%;
-}
-
 th{
-  color: #2557a7;
+  color: red;
   font-size: 14px;
 }
+.mat-button {
+  background-color: lightgray;
+  color: black;
+  font-family: "Montserrat", sans-serif;
+}
+#remove {
+  margin-left: 10px;
+  background-color: lightgray;
+  color: red;
+}
+#remove:hover {
+  background-color: red;
+  color: white;
+}
+
+.mat-button:hover{
+  background-color: #2557a7;
+  color: white;
+}
+
 

@@ -28,6 +28,7 @@ export class InterviewComponent implements OnInit {
   }
 
   ngOnInit() {
+
   }
 
   getApplications() {
@@ -35,5 +36,16 @@ export class InterviewComponent implements OnInit {
       res => {
         this.dataSource = new MatTableDataSource(res)
       })
+  }
+
+  withdrawal(uid:string) {
+    this.fs.collection('application').doc(uid).delete().then(
+      ref => {
+        this.snack.open('You have withdrawal from this job.', 'OK', {
+          duration: 2000,
+          panelClass: ['blue-snackbar', 'login-snackbar'],
+        })
+      }
+    )
   }
 }

@@ -3,6 +3,7 @@ import {UsersService} from "../../../_services/users.service";
 import {User} from "../../../_models/user.model";
 import { AngularFireStorage } from '@angular/fire/storage';
 import {AngularFirestore} from "@angular/fire/firestore";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-profile-edit',
@@ -19,7 +20,8 @@ export class ProfileEditComponent implements OnInit {
 
   constructor(private userService: UsersService,
               private fs:AngularFirestore,
-              private storage: AngularFireStorage) {}
+              private storage: AngularFireStorage,
+              private snackBar: MatSnackBar) {}
 
   ngOnInit() {
     this.userService.getCertainUser(localStorage.getItem('uid')).subscribe(
@@ -65,8 +67,16 @@ export class ProfileEditComponent implements OnInit {
           // imgUrl: 'assets/seekerLogo.PNG'
           // skills: skills,
         }
+      ).then(
+        ref => {
+          this.snackBar.open('Job have updated your profile.', 'OK', {
+            duration: 2000,
+            panelClass: ['blue-snackbar', 'login-snackbar'],
+          })
+
+        }
+
       )
     }
-    console.log('DONE')
   }
 }

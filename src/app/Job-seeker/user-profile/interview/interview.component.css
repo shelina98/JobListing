@@ -12,13 +12,17 @@
 table {
   width: 100%;
 }
-
-.mat-form-field {
-  font-size: 14px;
-  width: 100%;
-}
 th{
   color: #2557a7;
   font-size: 14px;
+}
+.mat-button {
+  background-color:  #2557a7;
+  color: white;
+  font-family: "Montserrat", sans-serif;
+}
+.mat-button:hover{
+  background-color: lightgray;
+  color: black;
 }
 

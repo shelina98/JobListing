@@ -3,28 +3,28 @@
     <table mat-table [dataSource]="dataSource" matSort>
       <!-- Title -->
       <ng-container matColumnDef="Title">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>  Favorites Title </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>  Favorites Jobs </th>
         <td mat-cell *matCellDef="let row"> {{row.jobtit}} </td>
       </ng-container>
       <!-- Options (More Icon) -->
       <ng-container matColumnDef="Options">
         <th mat-header-cell *matHeaderCellDef>
         </th>
-        <td mat-cell *matCellDef="let userData" style="text-align: right;">
-          <button mat-button>
+        <td mat-cell *matCellDef="let row" style="text-align: right;">
+          <button mat-button  (click)="apply(row.uid, row.jobid, row.userid)">
             <span>APPLY</span>
           </button>
-          <button mat-button>
+          <button mat-button id="remove" (click)="delete(row.uid)">
             <span>REMOVE</span>
           </button>
         </td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      <!-- Row shown when there is no matching data. -->
-<!--      <tr class="mat-row" *matNoDataRow>-->
-<!--        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>-->
-<!--      </tr>-->
+       Row shown when there is no matching data.
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No favorites job</td>
+      </tr>
     </table>
   </div>
 </div>
