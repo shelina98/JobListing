@@ -73,7 +73,7 @@ button {
 .detail-container {
   padding: 0px 20px;
   width: 60%;
-  height: fit-content;
+  align-self: flex-start;
   position: -webkit-sticky;
   position: sticky;
   top: 0;
