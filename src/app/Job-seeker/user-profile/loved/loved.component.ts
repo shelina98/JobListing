@@ -37,32 +37,36 @@ this.getLoves()
         })
   }
 
-  apply(uid:string,userid:string, jobid:string) {
-    this.jobService.getApplicationInfo(userid, jobid).pipe(take(1))
+  apply(uid:string,userid:string, jobid:string, jobtit:string) {
+    console.log(uid, jobid,userid)
+    this.jobService.getApplicationInfo(userid,jobid).pipe(take(1))
       .subscribe((el: ApplicationModel[]) => {
-          if (el.length != 0) {
-            this.snack.open('You already applied for this job.', 'OK', {
-              duration: 2000,
-              panelClass: ['blue-snackbar', 'login-snackbar'],
-            })
-          } else {
-            this.fs.collection('application').add({
-              uidUser: userid,
-              uidJob: jobid,
-              uid: uid
-            })
-              .then(
-                ref => {
-                  this.snack.open('You have just applied for this job.', 'OK', {
-                    duration: 2000,
-                    panelClass: ['blue-snackbar', 'login-snackbar'],
-                  })
-
-                }
-              )
-          }
+        if (el.length != 0) {
+          this.snack.open('You already applied for this job.', 'OK', {
+            duration: 2000,
+            panelClass: ['blue-snackbar', 'login-snackbar'],
+          })
         }
-      )
+        else {
+
+          this.fs.collection('application').add({
+            uidUser: userid,
+            uidJob: jobid,
+            jobtit: jobtit
+          }).then(
+            appRec => {
+              this.fs.collection('application').doc(appRec.id).update(
+                {
+                  uid: appRec.id
+                }
+              );
+              this.snack.open('You just applied for this job.', 'OK', {
+                duration: 2000,
+                panelClass: ['blue-snackbar', 'login-snackbar'],
+              })
+            })
+        }
+      })
   }
 
   delete(uid:string) {
