@@ -55,7 +55,6 @@ export class JobShellComponent implements OnInit {
   active(job:Job){
     this.selectedJob = job;
     this.index = this.selectedJob.uid
-    console.log(this.selectedJob)
   }
 
   // filterJobs(filterValue: string) {

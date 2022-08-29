@@ -7,6 +7,7 @@ import {Router} from "@angular/router";
 import {AuthenticationService} from "../../_services/authentication.service";
 import {LovedModel} from "../../_models/loved.model";
 import {ApplicationModel} from "../../_models/application.model";
+import {take} from "rxjs/operators";
 
 @Component({
   selector: 'app-job-detail',
@@ -17,6 +18,7 @@ export class JobDetailComponent implements OnChanges {
 
   @Input() job: Job | undefined
   @Input() userid: boolean | undefined
+  user !: boolean
   jobs!:Job
   longText = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`;
 
@@ -40,13 +42,20 @@ export class JobDetailComponent implements OnChanges {
   addtofav(jobs: Job) {
     if(this.userid) {
       let usid = JSON.stringify(localStorage.getItem('uid'))
-      this.jobS.getLOVEDInfo( usid , jobs.uid)
+      this.jobS.getLOVEDInfo( usid , jobs.uid).pipe(take(1))
         .subscribe((el: LovedModel[]) => {
           if (el.length != 0) {
-            this.snackBar.open('You have saved this job.', 'OK', {
-              duration: 2000,
-              panelClass: ['blue-snackbar', 'login-snackbar'],
-            })
+            // this.fs.collection('loved').doc(el[0].uid).delete().then(ref =>
+            // {
+            //   this.snackBar.open('You have already added this job to favorites.', 'OK', {
+            //     duration: 2000,
+            //     panelClass: ['blue-snackbar', 'login-snackbar'],
+            //   })
+            // })
+               this.snackBar.open('You have already added this job to favorites.', 'OK', {
+                duration: 2000,
+               panelClass: ['blue-snackbar', 'login-snackbar'],
+               })
           }
           else {
             this.fs.collection('loved').add({
@@ -76,7 +85,7 @@ export class JobDetailComponent implements OnChanges {
   apply(jobs: Job) {
     if(this.userid) {
       let usid = JSON.stringify(localStorage.getItem('uid'))
-      this.jobS.getApplicationInfo( usid,jobs.uid)
+      this.jobS.getApplicationInfo( usid,jobs.uid).pipe(take(1))
         .subscribe((el: ApplicationModel[]) => {
           if (el.length != 0) {
             this.snackBar.open('You already applied for this job.', 'OK', {
@@ -90,7 +99,7 @@ export class JobDetailComponent implements OnChanges {
               uidJob: jobs.uid.toString()
             }).then(
               appRec => {
-                this.fs.collection('loved').doc(appRec.id).update(
+                this.fs.collection('application').doc(appRec.id).update(
                   {
                     uid: appRec.id
                   }
