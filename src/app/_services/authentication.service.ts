@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import { User } from 'src/app/_models/user.model';
 
 @Injectable({
@@ -18,9 +18,56 @@ export class AuthenticationService {
     return false;
   }
 
+
   setLoggedIn(toLogInOrNotToLogIn: boolean) {
     this.loggedIn = toLogInOrNotToLogIn;
   }
+
+
+  isLoginSubject = new BehaviorSubject<boolean>(this.hasToken());
+
+  /**
+   *
+   * @returns {Observable<T>}
+   */
+  isLoggedInOb() : Observable<boolean> {
+    return this.isLoginSubject.asObservable();
+  }
+
+  /**
+   *  Login the user then tell all the subscribers about the new status
+   */
+  login() : void {
+    localStorage.setItem('token', 'JWT');
+    this.isLoginSubject.next(true);
+  }
+
+  /**
+   * Log out the user then tell all the subscribers about the new status
+   */
+  logout() : void {
+    localStorage.removeItem('token');
+    this.isLoginSubject.next(false);
+  }
+
+  /**
+   * if we have token the user is loggedIn
+   * @returns {boolean}
+   */
+  private hasToken() : boolean {
+    return !!localStorage.getItem('token');
+  }
+
+
+
+
+
+
+
+
+
+
+
 
 //login
   getAccountInfo(email: string, password: string): Observable<User[]> {

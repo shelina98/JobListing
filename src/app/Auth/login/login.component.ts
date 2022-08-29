@@ -55,6 +55,8 @@ export class LoginComponent implements OnInit {
       else
       {
         this.as.setLoggedIn(true);
+        this.as.login();
+
         localStorage.setItem('email', el[0].email);
         localStorage.setItem('username', el[0].username);
         localStorage.setItem('uid', el[0].uid);
@@ -63,9 +65,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('role', 'recruiter');
           this.as.setRecruiter(true);
           this.rt.navigate(['/recruiter']);
-
         }
-
         else {
           localStorage.setItem('role', 'job-seeker');
           this.rt.navigate(['']);
