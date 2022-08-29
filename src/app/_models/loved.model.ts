@@ -1,6 +1,7 @@
 
 export interface LovedModel {
   uid: string;
-  userid: string;
-  jobid:string
+  uidUser: string;
+  uidJob:string
+  jobtit:string
 }

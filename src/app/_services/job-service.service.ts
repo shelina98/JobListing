@@ -23,15 +23,15 @@ export class JobServiceService {
       .valueChanges() as Observable<Job[]>;
   }
 
-  getCertainJob(uid: string | undefined): Observable<User[]> {
+  getCertainJob(uid: string | undefined): Observable<Job[]> {
     return this._firestore
       .collection('jobs',
         (ref) =>
           ref.where('uid', '==', uid))
-      .valueChanges() as Observable<User[]>;
+      .valueChanges() as Observable<Job[]>;
   }
 
-  getLOVEDInfo(uid: string, jobid: string): Observable<LovedModel[]> {
+  getLOVEDInfo(uid: string | null, jobid: string): Observable<LovedModel[]> {
     return this._firestore.collection('loved', (ref) =>
         ref.where('uidUser',
           '==', uid).where('uidJob',
@@ -39,7 +39,8 @@ export class JobServiceService {
       )
       .valueChanges() as Observable<LovedModel[]>;
   }
-  getApplicationInfo(uid: string, jobid: string): Observable<ApplicationModel[]> {
+
+  getApplicationInfo(uid: string | null, jobid: string): Observable<ApplicationModel[]> {
     return this._firestore.collection('application', (ref) =>
       ref.where('uidUser',
         '==', uid).where('uidJob',
@@ -55,6 +56,20 @@ export class JobServiceService {
         ref.where('managerID', '==', localStorage.getItem('uid'))
     ).valueChanges() as Observable<Job[]>;
   }
+
+
+  LovedJobs() {
+    return this._firestore.collection('loved',
+        ref => ref.where('uidUser','==', localStorage.getItem('uid'))
+    ).valueChanges() as Observable<LovedModel[]>;
+  }
+  InterviewJobs() {
+    return this._firestore.collection('application',
+      ref => ref.where('uidUser','==', localStorage.getItem('uid'))
+    ).valueChanges() as Observable<ApplicationModel[]>;
+  }
+
+
 
   deleteJob(jobuid: string) {
     this._firestore.collection("jobs").doc(jobuid).delete()

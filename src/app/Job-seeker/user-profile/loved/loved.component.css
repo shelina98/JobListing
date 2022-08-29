@@ -1,0 +1,27 @@
+.flex-it {
+  display: flex;
+  flex-direction: column;
+  background-size: cover;
+}
+
+table {
+  width: 100%;
+}
+.height {
+  height: calc(100% - 64px);
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td, th {
+  width: 25%;
+}
+
+th{
+  color: #2557a7;
+  font-size: 14px;
+}
+

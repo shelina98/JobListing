@@ -2,6 +2,7 @@
   display: flex;
   height: calc(100% - 64px);
   flex-direction: row;
+  background-color: #f3f2f1;
 }
 .profile {
   overflow: hidden;
@@ -14,8 +15,15 @@
 .love-interviews {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: flex-start;
   width: 50%;
-  background-color: red;
 }
+.love{
+  height: 50%;
+  padding: 20px 20px;
+}
+.interview {
+  height: 50%;
+  padding: 20px 20px;
 
+}

@@ -41,8 +41,8 @@ export class JobDetailComponent implements OnChanges {
 
   addtofav(jobs: Job) {
     if(this.userid) {
-      let usid = JSON.stringify(localStorage.getItem('uid'))
-      this.jobS.getLOVEDInfo( usid , jobs.uid).pipe(take(1))
+      let usid = localStorage.getItem('uid')
+      this.jobS.getLOVEDInfo(usid,jobs.uid).pipe(take(1))
         .subscribe((el: LovedModel[]) => {
           if (el.length != 0) {
             // this.fs.collection('loved').doc(el[0].uid).delete().then(ref =>
@@ -59,8 +59,9 @@ export class JobDetailComponent implements OnChanges {
           }
           else {
             this.fs.collection('loved').add({
-              uidUser: JSON.stringify(localStorage.getItem('uid')),
-              uidJob: jobs.uid.toString()
+              uidUser: usid,
+              uidJob: jobs.uid,
+              jobtit: jobs.title
             }).then(
               loveRec => {
                 this.fs.collection('loved').doc(loveRec.id).update(
@@ -84,8 +85,8 @@ export class JobDetailComponent implements OnChanges {
 
   apply(jobs: Job) {
     if(this.userid) {
-      let usid = JSON.stringify(localStorage.getItem('uid'))
-      this.jobS.getApplicationInfo( usid,jobs.uid).pipe(take(1))
+      let usid = localStorage.getItem('uid')
+      this.jobS.getApplicationInfo(usid,jobs.uid).pipe(take(1))
         .subscribe((el: ApplicationModel[]) => {
           if (el.length != 0) {
             this.snackBar.open('You already applied for this job.', 'OK', {
@@ -95,8 +96,9 @@ export class JobDetailComponent implements OnChanges {
           }
           else {
             this.fs.collection('application').add({
-              uidUser: JSON.stringify(localStorage.getItem('uid')),
-              uidJob: jobs.uid.toString()
+              uidUser: usid,
+              uidJob: jobs.uid,
+              jobtit: jobs.title
             }).then(
               appRec => {
                 this.fs.collection('application').doc(appRec.id).update(

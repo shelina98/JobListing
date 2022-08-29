@@ -1,7 +1,5 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {NgForm} from "@angular/forms";
 import {UsersService} from "../../../_services/users.service";
-import {Router} from "@angular/router";
 import {User} from "../../../_models/user.model";
 import { AngularFireStorage } from '@angular/fire/storage';
 import {AngularFirestore} from "@angular/fire/firestore";
@@ -18,15 +16,18 @@ export class ProfileEditComponent implements OnInit {
   username!:string
   url!:string
   default:boolean = false
+
   constructor(private userService: UsersService,
               private fs:AngularFirestore,
-              private storage: AngularFireStorage) {
-  }
+              private storage: AngularFireStorage) {}
+
   ngOnInit() {
     this.userService.getCertainUser(localStorage.getItem('uid')).subscribe(
       res=> {
+        console.log(res)
         this.profile = res[0]
         this.username = this.profile.username
+        this.url = this.profile.imgUrl
         if (this.url != "") {
           this.url = this.profile.imgUrl
           this.default = false;

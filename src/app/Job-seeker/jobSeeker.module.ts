@@ -22,6 +22,10 @@ import {MatInputModule} from "@angular/material/input";
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import {UsersService} from "../_services/users.service";
 import { ProfileEditComponent } from './user-profile/profile-edit/profile-edit.component';
+import { LovedComponent } from './user-profile/loved/loved.component';
+import { InterviewComponent } from './user-profile/interview/interview.component';
+import {MatTableModule} from "@angular/material/table";
+import {MatSortModule} from "@angular/material/sort";
 
 
 @NgModule({
@@ -32,6 +36,8 @@ import { ProfileEditComponent } from './user-profile/profile-edit/profile-edit.c
      JobShellComponent,
      UserProfileComponent,
      ProfileEditComponent,
+     LovedComponent,
+     InterviewComponent,
   ],
 
   imports: [
@@ -51,6 +57,8 @@ import { ProfileEditComponent } from './user-profile/profile-edit/profile-edit.c
     MatInputModule,
     JobSeekerRoutingModule,
     MatDividerModule,
+    MatTableModule,
+    MatSortModule,
 
 
   ],

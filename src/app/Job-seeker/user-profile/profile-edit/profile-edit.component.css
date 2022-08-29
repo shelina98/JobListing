@@ -21,13 +21,14 @@
   font-size: 1.37rem;
 }
 
-.mat-raised-button {
-  background-color: cornflowerblue;
+.mat-button {
+  background-color: lightgray;
   color: white;
   font-family: "Montserrat", sans-serif;
-  margin: 2vh 0;
 }
-
+.mat-button:hover{
+  background-color: #2557a7;
+}
 .mat-form-field {
   margin-bottom: 1vh;
 }
