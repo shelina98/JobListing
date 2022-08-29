@@ -11,12 +11,9 @@ import {MatTableDataSource} from "@angular/material/table";
   templateUrl: './loved.component.html',
   styleUrls: ['./loved.component.css']
 })
-
 export class LovedComponent implements OnInit {
-
   dataSource!: MatTableDataSource<LovedModel>;
   displayedColumns: string[] = ['Title', 'Options'];
-
   constructor(
     private jobService: JobServiceService,
     private dialog: MatDialog,
@@ -34,7 +31,6 @@ this.getLoves()
       this.jobService.LovedJobs().subscribe(
         res => {
           this.dataSource = new MatTableDataSource(res)
-
         })
   }
 
