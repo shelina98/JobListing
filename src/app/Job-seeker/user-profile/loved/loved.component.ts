@@ -38,9 +38,10 @@ this.getLoves()
   }
 
   apply(uid:string,userid:string, jobid:string, jobtit:string) {
-    console.log(uid, jobid,userid)
-    this.jobService.getApplicationInfo(userid,jobid).pipe(take(1))
+    this.jobService.getApplicationInfo(userid,jobid)
       .subscribe((el: ApplicationModel[]) => {
+        console.log(el)
+        console.log(el)
         if (el.length != 0) {
           this.snack.open('You already applied for this job.', 'OK', {
             duration: 2000,
@@ -48,7 +49,6 @@ this.getLoves()
           })
         }
         else {
-
           this.fs.collection('application').add({
             uidUser: userid,
             uidJob: jobid,

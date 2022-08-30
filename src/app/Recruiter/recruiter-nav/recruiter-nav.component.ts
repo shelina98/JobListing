@@ -13,6 +13,7 @@ export class RecruiterNavComponent implements OnInit {
   isLoggedIn: boolean = false
   username: string | null = ""
   signinOR : string = "Sign In"
+
   constructor(private router: Router,
               private authS: AuthenticationService) { }
 
@@ -25,7 +26,6 @@ export class RecruiterNavComponent implements OnInit {
     if(this.isLoggedIn) {
       this.signinOR = "Log Out"
     }
-
     this.username = localStorage.getItem('username')
   }
 
@@ -44,9 +44,9 @@ export class RecruiterNavComponent implements OnInit {
       localStorage.removeItem('email');
       localStorage.removeItem('username');
       localStorage.removeItem('uid');
+      this.authS.setLoggedIn(false)
       this.authS.logout()
       window.location.reload();
-
     }
 
   }

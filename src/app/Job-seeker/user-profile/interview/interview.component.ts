@@ -28,12 +28,13 @@ export class InterviewComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.getApplications()
   }
 
   getApplications() {
     this.jobService.InterviewJobs().subscribe(
       res => {
+        console.log(res)
         this.dataSource = new MatTableDataSource(res)
       })
   }

@@ -3,8 +3,6 @@ import {JobServiceService} from "../../_services/job-service.service";
 import {Job} from "../../_models/job.model";
 import {AngularFirestore} from "@angular/fire/firestore";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {Router} from "@angular/router";
-import {AuthenticationService} from "../../_services/authentication.service";
 import {LovedModel} from "../../_models/loved.model";
 import {ApplicationModel} from "../../_models/application.model";
 import {take} from "rxjs/operators";
@@ -45,34 +43,38 @@ export class JobDetailComponent implements OnChanges {
       this.jobS.getLOVEDInfo(usid,jobs.uid).pipe(take(1))
         .subscribe((el: LovedModel[]) => {
           if (el.length != 0) {
-            // this.fs.collection('loved').doc(el[0].uid).delete().then(ref =>
-            // {
-            //   this.snackBar.open('You have already added this job to favorites.', 'OK', {
-            //     duration: 2000,
-            //     panelClass: ['blue-snackbar', 'login-snackbar'],
-            //   })
-            // })
                this.snackBar.open('You have already added this job to favorites.', 'OK', {
-                duration: 2000,
+                 duration: 2000,
                panelClass: ['blue-snackbar', 'login-snackbar'],
                })
           }
           else {
-            this.fs.collection('loved').add({
-              uidUser: usid,
-              uidJob: jobs.uid,
-              jobtit: jobs.title
-            }).then(
-              loveRec => {
-                this.fs.collection('loved').doc(loveRec.id).update(
-                  {
-                    uid: loveRec.id
-                  }
-                );
-                this.snackBar.open('Job added to favorites.', 'OK', {
-                  duration: 2000,
-                  panelClass: ['blue-snackbar', 'login-snackbar'],
-                })
+            this.jobS.getApplicationInfo(usid,jobs.uid).pipe(take(1))
+              .subscribe((el:ApplicationModel[])=> {
+                if(el.length != 0){
+                  this.snackBar.open('You cannot add to favorites jobs you have applied for.', 'OK', {
+                    duration: 2000,
+                    panelClass: ['blue-snackbar', 'login-snackbar'],
+                  })
+                }
+                else {
+                  this.fs.collection('loved').add({
+                    uidUser: usid,
+                    uidJob: jobs.uid,
+                    jobtit: jobs.title
+                  }).then(
+                    loveRec => {
+                      this.fs.collection('loved').doc(loveRec.id).update(
+                        {
+                          uid: loveRec.id
+                        }
+                      );
+                      this.snackBar.open('Job added to favorites.', 'OK', {
+                        duration: 2000,
+                        panelClass: ['blue-snackbar', 'login-snackbar'],
+                      })
+                    })
+                 }
               })
           }
       })
@@ -83,10 +85,46 @@ export class JobDetailComponent implements OnChanges {
 
   }
 
+  // apply(jobs: Job) {
+  //   if(this.userid) {
+  //     let usid = localStorage.getItem('uid')
+  //     this.jobS.getApplicationInfo(usid,jobs.uid).pipe(take(1))
+  //       .subscribe((el: ApplicationModel[]) => {
+  //         if (el.length != 0) {
+  //           this.snackBar.open('You already applied for this job.', 'OK', {
+  //             duration: 2000,
+  //             panelClass: ['blue-snackbar', 'login-snackbar'],
+  //           })
+  //         }
+  //         else {
+  //           this.fs.collection('application').add({
+  //             uidUser: usid,
+  //             uidJob: jobs.uid,
+  //             jobtit: jobs.title
+  //           }).then(
+  //             appRec => {
+  //               this.fs.collection('application').doc(appRec.id).update(
+  //                 {
+  //                   uid: appRec.id
+  //                 }
+  //               );
+  //               this.snackBar.open('You just applied for this job.', 'OK', {
+  //                 duration: 2000,
+  //                 panelClass: ['blue-snackbar', 'login-snackbar'],
+  //               })
+  //             })
+  //         }
+  //       })
+  //   }
+  //   else {
+  //     this.applyN(jobs)
+  //   }
+  // }
+
   apply(jobs: Job) {
-    if(this.userid) {
+    if (this.userid) {
       let usid = localStorage.getItem('uid')
-      this.jobS.getApplicationInfo(usid,jobs.uid).pipe(take(1))
+      this.jobS.getApplicationInfo(usid, jobs.uid).pipe(take(1))
         .subscribe((el: ApplicationModel[]) => {
           if (el.length != 0) {
             this.snackBar.open('You already applied for this job.', 'OK', {
@@ -95,29 +133,57 @@ export class JobDetailComponent implements OnChanges {
             })
           }
           else {
-            this.fs.collection('application').add({
-              uidUser: usid,
-              uidJob: jobs.uid,
-              jobtit: jobs.title
-            }).then(
-              appRec => {
-                this.fs.collection('application').doc(appRec.id).update(
-                  {
-                    uid: appRec.id
-                  }
-                );
-                this.snackBar.open('You just applied for this job.', 'OK', {
-                  duration: 2000,
-                  panelClass: ['blue-snackbar', 'login-snackbar'],
-                })
+            this.jobS.getLOVEDInfo(usid, jobs.uid).pipe(take(1))
+              .subscribe((el: LovedModel[]) => {
+                if (el.length != 0) {
+                  this.fs.collection('loved').doc(el[0].uid).delete().then(ref => {
+                    this.snackBar.open('You just applied for this job.', 'OK', {
+                      duration: 2000,
+                      panelClass: ['blue-snackbar', 'login-snackbar'],
+                    })
+                  })
+
+                  this.fs.collection('application').add({
+                    uidUser: usid,
+                    uidJob: jobs.uid,
+                    jobtit: jobs.title
+                  }).then(
+                    appRec => {
+                      this.fs.collection('application').doc(appRec.id).update(
+                        {
+                          uid: appRec.id
+                        }
+                      );
+                    })
+                }
+                else {
+                  this.fs.collection('application').add({
+                    uidUser: usid,
+                    uidJob: jobs.uid,
+                    jobtit: jobs.title
+                  }).then(
+                    appRec => {
+                      this.fs.collection('application').doc(appRec.id).update(
+                        {
+                          uid: appRec.id
+                        }
+                      );
+                    }).then( ref => {
+                      this.snackBar.open('You just applied for this job.', 'OK', {
+                        duration: 2000,
+                        panelClass: ['blue-snackbar', 'login-snackbar'],
+                      })
+
+                    })
+                }
+
               })
           }
         })
     }
-    else {
-      this.applyN(jobs)
-    }
+    this.applyN(jobs)
   }
+
 
   addtofavN(jobs:Job){
     this.snackBar.open('You have to log in to add to favorites.', 'OK', {

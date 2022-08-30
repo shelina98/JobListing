@@ -3,6 +3,7 @@ import { Router, } from '@angular/router';
 import {AuthenticationService} from "../../_services/authentication.service";
 import {UsersService} from "../../_services/users.service";
 import {connectableObservableDescriptor} from "rxjs/internal/observable/ConnectableObservable";
+import {take} from "rxjs/operators";
 
 @Component({
   selector: 'app-seeker-nav',
@@ -20,15 +21,20 @@ export class SeekerNavComponent implements OnInit {
               private us:UsersService,) { }
 
   ngOnInit(): void {
-    this.isLoggedIn = this.authS.isLoggedIn()
+    this.authS.isLoggedInOb().pipe(take(1)).subscribe(
+      res => this.isLoggedIn = res
+    )
+
     if(this.isLoggedIn) {
       this.signinOR = "Log Out"
     }
+
     this.username = localStorage.getItem('username')
   }
 
 
   signIn() {
+
     if(!this.isLoggedIn) {
       this.router.navigate(['/login'],{
         queryParams:{
@@ -43,8 +49,11 @@ export class SeekerNavComponent implements OnInit {
         localStorage.removeItem('email');
         localStorage.removeItem('username');
         localStorage.removeItem('uid');
+        this.authS.setLoggedIn(false)
         this.authS.logout();
         this.router.navigate(['']);
+        window.location.reload();
+
     }
 
   }
