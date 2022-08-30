@@ -123,7 +123,9 @@ export class JobDetailComponent implements OnChanges {
 
   apply(jobs: Job) {
     if (this.userid) {
+
       let usid = localStorage.getItem('uid')
+
       this.jobS.getApplicationInfo(usid, jobs.uid).pipe(take(1))
         .subscribe((el: ApplicationModel[]) => {
           if (el.length != 0) {
@@ -180,8 +182,10 @@ export class JobDetailComponent implements OnChanges {
               })
           }
         })
+    } else {
+      this.applyN(jobs)
+
     }
-    this.applyN(jobs)
   }
 
 
