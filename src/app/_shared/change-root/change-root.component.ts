@@ -1,6 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {Router} from "@angular/router";
+import {AuthenticationService} from "../../_services/authentication.service";
 
 @Component({
   selector: 'app-change-root',
@@ -15,6 +16,7 @@ export class ChangeRootComponent implements OnInit {
   cancelButtonText = "Cancel"
   constructor(
     private router: Router,
+    private auth: AuthenticationService,
     @Inject(MAT_DIALOG_DATA) private data: any,
     private dialogRef: MatDialogRef<ChangeRootComponent>) {
     if(data){
@@ -37,15 +39,14 @@ export class ChangeRootComponent implements OnInit {
     localStorage.removeItem('email');
     localStorage.removeItem('username');
     localStorage.removeItem('uid');
+    this.auth.logout()
     if(localStorage.getItem('role')== 'job-seeker')
     {
       this.router.navigate(['/recruiter']);
-
       localStorage.setItem('role', 'recruiter')
     }
 else {
       this.router.navigate(['']);
-
       localStorage.setItem('role', 'job-seeker')
     }
 
