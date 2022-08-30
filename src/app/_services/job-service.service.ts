@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
 import {AngularFirestore, AngularFirestoreCollection} from "@angular/fire/firestore";
-import {Observable} from "rxjs";
+import {BehaviorSubject, Observable} from "rxjs";
 import {Job} from "../_models/job.model";
-import {User} from "../_models/user.model";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import firebase from "firebase";
 import {LovedModel} from "../_models/loved.model";
 import {ApplicationModel} from "../_models/application.model";
-import App = firebase.app.App;
 
 @Injectable({
   providedIn: 'root'
@@ -23,11 +21,19 @@ export class JobServiceService {
       .valueChanges() as Observable<Job[]>;
   }
 
+
   getCertainJob(uid: string | undefined): Observable<Job[]> {
     return this._firestore
       .collection('jobs',
         (ref) =>
           ref.where('uid', '==', uid))
+      .valueChanges() as Observable<Job[]>;
+  }
+
+  filterlocation(filter: string): Observable<Job[]> {
+    return this._firestore.collection('jobs',
+      (ref) =>
+        ref.where('address', '==', filter))
       .valueChanges() as Observable<Job[]>;
   }
 

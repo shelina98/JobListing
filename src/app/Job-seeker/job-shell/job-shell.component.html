@@ -1,23 +1,27 @@
 <div class="shell">
     <div class="filter-job">
-    <div class="inputContainers">
-      <mat-form-field appearance="outline" >
-        <mat-icon matSuffix>search</mat-icon>
-        <p matPrefix > What </p>
-        <input autocomplete="off" matInput  placeholder="Job Title, keywords or company" >
-      </mat-form-field>
-      <mat-form-field appearance="outline" >
-        <mat-icon matSuffix>place</mat-icon>
-        <p matPrefix > Where </p>
-        <input autocomplete="off" matInput  placeholder="Address" >
-      </mat-form-field>
-      <button mat-button> Search</button>
+    <div class="inputContainers" [formGroup]="filterJob">
+
+        <mat-form-field appearance="outline">
+          <mat-icon matSuffix>search</mat-icon>
+          <p matPrefix > What </p>
+          <input autocomplete="off" matInput
+                 formControlName="searchQ"
+                 placeholder="Job Title, keywords or company" >
+        </mat-form-field>
+        <mat-form-field appearance="outline" >
+          <mat-icon matSuffix>place</mat-icon>
+          <p matPrefix > Where </p>
+          <input autocomplete="off"  formControlName="location" matInput  placeholder="Address" >
+        </mat-form-field>
+
+      <button mat-button (click)="filterlocation()"> Search</button>
     </div>
     <div class="postjob" (click)="gotopostjobs()"> Post a Job as Recruiter </div>
   </div>
     <div class="jobs-feed">
      <div class="job-list">
-      <div *ngFor="let job of jobs" style="margin-bottom: 20px" >
+      <div *ngFor="let job of jobsF" style="margin-bottom: 20px" >
         <mat-card class="example-card" (click)="active(job)" [ngClass]="{'active': index===job.uid}">
           <mat-card-title>{{job.title}}</mat-card-title>
           <mat-card-subtitle>{{job.company}}</mat-card-subtitle>
