@@ -87,9 +87,10 @@ export class SignupComponent implements OnInit {
     localStorage.setItem('email', this.signupForm.get('email')?.value);
     localStorage.setItem('username', this.signupForm.get('username')?.value);
     this.as.setLoggedIn(true);
+    this.as.login();
 
     if (this.role === 'recruiter') {
-      this.rt.navigate(['/recruiter/job-poster']);
+      this.rt.navigate(['/recruiter']);
     }
     else
     {
