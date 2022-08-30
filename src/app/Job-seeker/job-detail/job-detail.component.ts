@@ -37,6 +37,19 @@ export class JobDetailComponent implements OnChanges {
     // categoryId.firstChange for comparing old and new values
   }
 
+  delete(uid:string) {
+    debugger
+    this.fs.collection('loved').doc(uid).delete().then(
+      ref => {
+        this.snackBar.open('You have removed this job to favorites.', 'OK', {
+          duration: 2000,
+          panelClass: ['blue-snackbar', 'login-snackbar'],
+        })
+      }
+    )
+  }
+
+
   addtofav(jobs: Job) {
     if(this.userid) {
       let usid = localStorage.getItem('uid')
@@ -84,9 +97,13 @@ export class JobDetailComponent implements OnChanges {
     }
 
   }
+  // apply(uid:string, userid:string, jobid:string, jobtit:string) {
+  //
+  // }
 
   apply(jobs: Job) {
     if (this.userid) {
+      // this.delete(uid)
       let usid = localStorage.getItem('uid')
       this.jobS.getApplicationInfo(usid, jobs.uid).pipe(take(1))
         .subscribe((el: ApplicationModel[]) => {
@@ -100,13 +117,13 @@ export class JobDetailComponent implements OnChanges {
             this.jobS.getLOVEDInfo(usid, jobs.uid).pipe(take(1))
               .subscribe((el: LovedModel[]) => {
                 if (el.length != 0) {
-                  this.fs.collection('loved').doc(el[0].uid).delete().then(ref => {
-                    this.snackBar.open('You just applied for this job.', 'OK', {
-                      duration: 2000,
-                      panelClass: ['blue-snackbar', 'login-snackbar'],
-                    })
-                  })
-
+                  // this.fs.collection('loved').doc(el[0].uid).delete().then(ref => {
+                  //   this.snackBar.open('You just applied for this job.', 'OK', {
+                  //     duration: 2000,
+                  //     panelClass: ['blue-snackbar', 'login-snackbar'],
+                  //   })
+                  // })
+                  this.delete(el[0].uid)
                   this.fs.collection('application').add({
                     uidUser: usid,
                     uidJob: jobs.uid,
@@ -133,12 +150,12 @@ export class JobDetailComponent implements OnChanges {
                         }
                       );
                     }).then( ref => {
-                      this.snackBar.open('You just applied for this job.', 'OK', {
-                        duration: 2000,
-                        panelClass: ['blue-snackbar', 'login-snackbar'],
-                      })
-
+                    this.snackBar.open('You just applied for this job.', 'OK', {
+                      duration: 2000,
+                      panelClass: ['blue-snackbar', 'login-snackbar'],
                     })
+
+                  })
                 }
 
               })
