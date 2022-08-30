@@ -85,42 +85,6 @@ export class JobDetailComponent implements OnChanges {
 
   }
 
-  // apply(jobs: Job) {
-  //   if(this.userid) {
-  //     let usid = localStorage.getItem('uid')
-  //     this.jobS.getApplicationInfo(usid,jobs.uid).pipe(take(1))
-  //       .subscribe((el: ApplicationModel[]) => {
-  //         if (el.length != 0) {
-  //           this.snackBar.open('You already applied for this job.', 'OK', {
-  //             duration: 2000,
-  //             panelClass: ['blue-snackbar', 'login-snackbar'],
-  //           })
-  //         }
-  //         else {
-  //           this.fs.collection('application').add({
-  //             uidUser: usid,
-  //             uidJob: jobs.uid,
-  //             jobtit: jobs.title
-  //           }).then(
-  //             appRec => {
-  //               this.fs.collection('application').doc(appRec.id).update(
-  //                 {
-  //                   uid: appRec.id
-  //                 }
-  //               );
-  //               this.snackBar.open('You just applied for this job.', 'OK', {
-  //                 duration: 2000,
-  //                 panelClass: ['blue-snackbar', 'login-snackbar'],
-  //               })
-  //             })
-  //         }
-  //       })
-  //   }
-  //   else {
-  //     this.applyN(jobs)
-  //   }
-  // }
-
   apply(jobs: Job) {
     if (this.userid) {
       let usid = localStorage.getItem('uid')
@@ -180,12 +144,12 @@ export class JobDetailComponent implements OnChanges {
               })
           }
         })
-    } else {
+    }
+    else {
       this.applyN(jobs)
 
     }
   }
-
 
   addtofavN(jobs:Job){
     this.snackBar.open('You have to log in to add to favorites.', 'OK', {

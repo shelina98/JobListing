@@ -17,6 +17,7 @@ import {ApplicationModel} from "../../../_models/application.model";
 export class LovedComponent implements OnInit {
   dataSource!: MatTableDataSource<LovedModel>;
   displayedColumns: string[] = ['Title', 'Options'];
+   uidTodelete!: string;
   constructor(
     private jobService: JobServiceService,
     private dialog: MatDialog,
@@ -36,40 +37,8 @@ this.getLoves()
           this.dataSource = new MatTableDataSource(res)
         })
   }
-
-  apply(uid:string,userid:string, jobid:string, jobtit:string) {
-    this.jobService.getApplicationInfo(userid,jobid)
-      .subscribe((el: ApplicationModel[]) => {
-        console.log(el)
-        console.log(el)
-        if (el.length != 0) {
-          this.snack.open('You already applied for this job.', 'OK', {
-            duration: 2000,
-            panelClass: ['blue-snackbar', 'login-snackbar'],
-          })
-        }
-        else {
-          this.fs.collection('application').add({
-            uidUser: userid,
-            uidJob: jobid,
-            jobtit: jobtit
-          }).then(
-            appRec => {
-              this.fs.collection('application').doc(appRec.id).update(
-                {
-                  uid: appRec.id
-                }
-              );
-              this.snack.open('You just applied for this job.', 'OK', {
-                duration: 2000,
-                panelClass: ['blue-snackbar', 'login-snackbar'],
-              })
-            })
-        }
-      })
-  }
-
   delete(uid:string) {
+    debugger
     this.fs.collection('loved').doc(uid).delete().then(
       ref => {
         this.snack.open('You have removed this job to favorites.', 'OK', {
@@ -78,6 +47,69 @@ this.getLoves()
         })
       }
     )
+  }
+
+
+
+  apply(uid:string, userid:string, jobid:string, jobtit:string) {
+    this.delete(uid)
+    let usid = localStorage.getItem('uid')
+    this.jobService.getApplicationInfo(usid, jobid).pipe(take(1))
+      .subscribe((el: ApplicationModel[]) => {
+        if (el.length != 0) {
+          this.snack.open('You already applied for this job.', 'OK', {
+            duration: 2000,
+            panelClass: ['blue-snackbar', 'login-snackbar'],
+          })
+        }
+        else {
+          this.jobService.getLOVEDInfo(usid, jobid).pipe(take(1))
+            .subscribe((el: LovedModel[]) => {
+              if (el.length != 0) {
+                this.fs.collection('loved').doc(el[0].uid).delete().then(ref => {
+                  this.snack.open('You just applied for this job.', 'OK', {
+                    duration: 2000,
+                    panelClass: ['blue-snackbar', 'login-snackbar'],
+                  })
+                })
+
+                this.fs.collection('application').add({
+                  uidUser: usid,
+                  uidJob: jobid,
+                  jobtit: jobtit
+                }).then(
+                  appRec => {
+                    this.fs.collection('application').doc(appRec.id).update(
+                      {
+                        uid: appRec.id
+                      }
+                    );
+                  })
+              }
+              else {
+                this.fs.collection('application').add({
+                  uidUser: usid,
+                  uidJob: jobid,
+                  jobtit: jobtit
+                }).then(
+                  appRec => {
+                    this.fs.collection('application').doc(appRec.id).update(
+                      {
+                        uid: appRec.id
+                      }
+                    );
+                  }).then( ref => {
+                  this.snack.open('You just applied for this job.', 'OK', {
+                    duration: 2000,
+                    panelClass: ['blue-snackbar', 'login-snackbar'],
+                  })
+
+                })
+              }
+
+            })
+        }
+      })
   }
 
 }
