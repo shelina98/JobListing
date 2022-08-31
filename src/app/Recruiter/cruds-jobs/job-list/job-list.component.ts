@@ -1,9 +1,9 @@
 import {AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
-import {Job} from "../../_models/job.model";
+import {Job} from "../../../_models/job.model";
 import {MatSort} from "@angular/material/sort";
 import {MatPaginator} from "@angular/material/paginator";
-import {JobServiceService} from "../../_services/job-service.service";
+import {JobServiceService} from "../../../_services/job-service.service";
 import {MatDialog} from "@angular/material/dialog";
 import {DeleteDialogComponent} from "../delete-dialog/delete-dialog.component";
 import {MatSnackBar} from "@angular/material/snack-bar";

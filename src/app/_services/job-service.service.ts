@@ -75,8 +75,11 @@ export class JobServiceService {
     ).valueChanges() as Observable<ApplicationModel[]>;
   }
 
-
-
+  INTERVIEW(){
+    return this._firestore.collection('application',
+      ref => ref.where('managerID','==', localStorage.getItem('uid'))
+    ).valueChanges() as Observable<ApplicationModel[]>;
+  }
   deleteJob(jobuid: string) {
     this._firestore.collection("jobs").doc(jobuid).delete()
   }

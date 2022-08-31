@@ -4,14 +4,12 @@
 
   <span class="example-spacer"></span>
 
-  <button mat-icon-button *ngIf="isLoggedIn" >
-    <mat-icon> chat</mat-icon>
+  <button mat-icon-button *ngIf="isLoggedIn" (click)="goToHomePage()">
+    <mat-icon> home</mat-icon>
   </button>
-
-  <button mat-button *ngIf="isLoggedIn">
+  <button mat-button *ngIf="isLoggedIn" (click)="goToPRofile()">
     {{username}}
   </button>
-
   <div class="signin" (click)="signIn()">{{signinOR}}</div>
   <div class="vertical"></div>
   <div class="roleChoose" (click)="jobPage()"> Find a Job </div>

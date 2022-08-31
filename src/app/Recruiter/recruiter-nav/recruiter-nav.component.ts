@@ -54,4 +54,10 @@ export class RecruiterNavComponent implements OnInit {
     this.router.navigate([''])
   }
 
+  goToPRofile() {
+    this.router.navigate(['/recruiter/profile-rec'])
+  }
+  goToHomePage() {
+    this.router.navigate(['/recruiter'])
+  }
 }

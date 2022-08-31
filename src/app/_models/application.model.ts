@@ -4,4 +4,6 @@ export interface ApplicationModel {
   userid: string;
   jobid:string
   jobtit:string
+  managerID: string
+
 }

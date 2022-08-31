@@ -4,4 +4,5 @@ export interface LovedModel {
   uidUser: string;
   uidJob:string
   jobtit:string
+  managerID: string
 }

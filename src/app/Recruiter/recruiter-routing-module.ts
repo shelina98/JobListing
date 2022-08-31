@@ -4,10 +4,9 @@ import {RecruiterDashboardComponent} from "./recruiter-dashboard/recruiter-dashb
 import {RecruiterShellComponent} from "./recruiter-shell/recruiter-shell.component";
 import {JobPosterComponent} from "./job-poster/job-poster.component";
 import {RecruiterGuard} from "../_guards/recruiter.guard";
-import {JobListComponent} from "./job-list/job-list.component";
+import {JobListComponent} from "./cruds-jobs/job-list/job-list.component";
 import {AuthenticationGuard} from "../_guards/authentication.guard";
-
-
+import {RecruiterProfileComponent} from "./recruiter-profile/recruiter-profile.component";
 const routes: Routes = [
   {
     path: 'recruiter',
@@ -20,15 +19,10 @@ const routes: Routes = [
 
       },
       {
-        path:'job-poster',
-        component: JobPosterComponent,
-        canActivate:[AuthenticationGuard]
+        path: 'profile-rec',
+        component:RecruiterProfileComponent,
+        canActivate: [AuthenticationGuard]
       },
-      {
-        path:'job-list',
-        component: JobListComponent,
-        canActivate:[AuthenticationGuard]
-      }
     ]
   }
 ]

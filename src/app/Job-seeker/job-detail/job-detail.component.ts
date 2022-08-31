@@ -74,7 +74,8 @@ export class JobDetailComponent implements OnChanges {
                   this.fs.collection('loved').add({
                     uidUser: usid,
                     uidJob: jobs.uid,
-                    jobtit: jobs.title
+                    jobtit: jobs.title,
+                    managerID: jobs.managerID
                   }).then(
                     loveRec => {
                       this.fs.collection('loved').doc(loveRec.id).update(
@@ -127,12 +128,13 @@ export class JobDetailComponent implements OnChanges {
                   this.fs.collection('application').add({
                     uidUser: usid,
                     uidJob: jobs.uid,
-                    jobtit: jobs.title
+                    jobtit: jobs.title,
+                    managerID: jobs.title
                   }).then(
                     appRec => {
                       this.fs.collection('application').doc(appRec.id).update(
                         {
-                          uid: appRec.id
+                          uid: el[0].uid
                         }
                       );
                     })
@@ -141,7 +143,8 @@ export class JobDetailComponent implements OnChanges {
                   this.fs.collection('application').add({
                     uidUser: usid,
                     uidJob: jobs.uid,
-                    jobtit: jobs.title
+                    jobtit: jobs.title,
+                    managerId: jobs.managerID
                   }).then(
                     appRec => {
                       this.fs.collection('application').doc(appRec.id).update(

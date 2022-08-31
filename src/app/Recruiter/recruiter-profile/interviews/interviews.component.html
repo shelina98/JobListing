@@ -3,7 +3,7 @@
     <table mat-table [dataSource]="dataSource" matSort>
       <!-- Title -->
       <ng-container matColumnDef="Title">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>  Favorites Jobs </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>  Application for your job positions </th>
         <td mat-cell *matCellDef="let row"> {{row.jobtit}} </td>
       </ng-container>
       <!-- Options (More Icon) -->
@@ -11,19 +11,16 @@
         <th mat-header-cell *matHeaderCellDef>
         </th>
         <td mat-cell *matCellDef="let row" style="text-align: right;">
-          <button mat-button  (click)="apply(row.uid, row.uidJob, row.uidUser,row.jobtit,row.managerID)">
-            <span>APPLY</span>
-          </button>
-          <button mat-button id="remove" (click)="delete(row.uid)">
-            <span>REMOVE</span>
+          <button mat-button (click)="withdrawal(row.uid)">
+            <span>SEE APPLICATION</span>
           </button>
         </td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-       Row shown when there is no matching data.
+      Row shown when there is no matching data.
       <tr class="mat-row" *matNoDataRow>
-        <td class="mat-cell" colspan="4">No favorites job</td>
+        <td class="mat-cell" colspan="4">No applications</td>
       </tr>
     </table>
   </div>

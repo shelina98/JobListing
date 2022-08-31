@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup} from '@angular/forms';
-import { Job} from "../../_models/job.model";
+import { Job} from "../../../_models/job.model";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 export interface DetailsData {
   job: Job;

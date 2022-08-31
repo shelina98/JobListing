@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AngularFirestore} from "@angular/fire/firestore";
 import {ActivatedRoute, Router} from "@angular/router";
-import {AuthenticationService} from "../../_services/authentication.service";
+import {AuthenticationService} from "../../../_services/authentication.service";
 import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 import {MatSnackBar} from "@angular/material/snack-bar";
 

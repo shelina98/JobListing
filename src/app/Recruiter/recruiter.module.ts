@@ -23,14 +23,17 @@ import {RecruiterShellComponent} from "./recruiter-shell/recruiter-shell.compone
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatTableModule} from "@angular/material/table";
 import {MatSortModule} from "@angular/material/sort";
-import { JobListComponent } from './job-list/job-list.component';
-import {DeleteDialogComponent} from "./delete-dialog/delete-dialog.component";
+import { JobListComponent } from './cruds-jobs/job-list/job-list.component';
+import {DeleteDialogComponent} from "./cruds-jobs/delete-dialog/delete-dialog.component";
 import {MatDialogModule} from "@angular/material/dialog";
-import {DetailsComponent} from "./details/details.component";
-import {JobEditerComponent} from "./job-editer/job-editer.component";
+import {DetailsComponent} from "./cruds-jobs/details/details.component";
+import {JobEditerComponent} from "./cruds-jobs/job-editer/job-editer.component";
+import {RecruiterProfileComponent} from "./recruiter-profile/recruiter-profile.component";
+import {ProfEditComponent} from "./recruiter-profile/prof-edit/prof-edit.component";
+import { InterviewsComponent } from './recruiter-profile/interviews/interviews.component';
 
 @NgModule({
-  declarations: [ RecruiterNavComponent,JobEditerComponent, DetailsComponent,DeleteDialogComponent, RecruiterDashboardComponent, JobPosterComponent,RecruiterShellComponent, JobListComponent,
+  declarations: [ RecruiterProfileComponent,ProfEditComponent, RecruiterNavComponent,JobEditerComponent, DetailsComponent,DeleteDialogComponent, RecruiterDashboardComponent, JobPosterComponent,RecruiterShellComponent, JobListComponent, InterviewsComponent,
   ],
 
   imports: [

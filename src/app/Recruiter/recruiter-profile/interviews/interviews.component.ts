@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
+import {ApplicationModel} from "../../../_models/application.model";
 import {JobServiceService} from "../../../_services/job-service.service";
 import {MatDialog} from "@angular/material/dialog";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
 import {AngularFirestore} from "@angular/fire/firestore";
-import {ApplicationModel} from "../../../_models/application.model";
 
 @Component({
-  selector: 'app-interview',
-  templateUrl: './interview.component.html',
-  styleUrls: ['./interview.component.css']
+  selector: 'app-interviews',
+  templateUrl: './interviews.component.html',
+  styleUrls: ['./interviews.component.css']
 })
-export class InterviewComponent implements OnInit {
+export class InterviewsComponent implements OnInit {
 
   dataSource!: MatTableDataSource<ApplicationModel>;
   displayedColumns: string[] = ['Title', 'Options'];
@@ -31,8 +31,9 @@ export class InterviewComponent implements OnInit {
   }
 
   getApplications() {
-    this.jobService.InterviewJobs().subscribe(
+    this.jobService.INTERVIEW().subscribe(
       res => {
+        console.log(res)
         this.dataSource = new MatTableDataSource(res)
       })
   }
@@ -40,11 +41,12 @@ export class InterviewComponent implements OnInit {
   withdrawal(uid:string) {
     this.fs.collection('application').doc(uid).delete().then(
       ref => {
-        this.snack.open('You have withdrawal from this job.', 'OK', {
+        this.snack.open('Application seen.', 'OK', {
           duration: 2000,
           panelClass: ['blue-snackbar', 'login-snackbar'],
         })
       }
     )
   }
+
 }
