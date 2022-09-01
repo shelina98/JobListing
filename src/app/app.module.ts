@@ -36,6 +36,7 @@ import {JobSeekerModule} from "./Job-seeker/jobSeeker.module";
 import { ChangeRootComponent } from './_shared/change-root/change-root.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {NgbModalModule} from "@ng-bootstrap/ng-bootstrap";
+import {LayoutModule} from '@angular/cdk/layout';
 
 @NgModule({
   declarations: [ AppComponent, PageNotFoundComponent, ChangeRootComponent,],
@@ -84,6 +85,7 @@ import {NgbModalModule} from "@ng-bootstrap/ng-bootstrap";
     MatOptionModule,
     MatSelectModule,
     MatToolbarModule,
+    LayoutModule
 
   ],
   providers: [],

@@ -52,12 +52,12 @@ export class LovedComponent implements OnInit {
   }
 
 
-  apply(uid: string, userid: string, jobid: string, jobtit: string, managerID:string) {
+  apply(uid: string, jobid: string,userid: string, jobtit: string, managerID:string) {
     let usid = localStorage.getItem('uid')
     this.delete(uid)
     this.fs.collection('application').add({
       uidUser: usid,
-      uidJob: jobid,
+      uidJob: jobid ,
       jobtit: jobtit,
       managerID: managerID
     }).then(

@@ -63,7 +63,7 @@ export class JobShellComponent implements OnInit {
     this.filterJob.valueChanges // subscribe to all changes
      .subscribe(ref => {
        const searchStr = ref.searchQ.toLowerCase();
-       this.location = ref.location.toLowerCase();
+       this.location = ref.location;
        this.applyFilter(searchStr)
      });
   }
