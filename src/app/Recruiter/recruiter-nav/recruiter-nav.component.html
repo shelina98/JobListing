@@ -1,16 +1,30 @@
 <mat-toolbar>
   <span> <img src="assets/logo.jpg" width="65%"/></span>
   <span class="example-spacer"></span>
-
-  <span class="example-spacer"></span>
-
-  <button mat-icon-button *ngIf="isLoggedIn" (click)="goToHomePage()">
+  <button mat-icon-button *ngIf="isLoggedIn && !isSmall" (click)="goToHomePage()">
     <mat-icon> home</mat-icon>
   </button>
-  <button mat-button *ngIf="isLoggedIn" (click)="goToPRofile()">
+  <button mat-button *ngIf="isLoggedIn && !isSmall" (click)="goToPRofile()">
     {{username}}
   </button>
-  <div class="signin" (click)="signIn()">{{signinOR}}</div>
-  <div class="vertical"></div>
-  <div class="roleChoose" (click)="jobPage()"> Find a Job </div>
+  <div class="signin" (click)="signIn()" *ngIf="!isSmall">{{signinOR}}</div>
+  <div class="vertical" *ngIf="!isSmall"></div>
+  <div class="roleChoose" (click)="jobPage()" *ngIf="!isSmall"> Find a Job </div>
+
+  <button mat-icon-button [matMenuTriggerFor]="menu"  *ngIf="isSmall" aria-label="more">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+
+    <button mat-menu-item *ngIf="isLoggedIn" (click)="goToHomePage()">
+      <span>Home</span>
+    </button>
+    <button mat-menu-item *ngIf="isLoggedIn" (click)="goToPRofile()" style="margin-right:10px">
+      <span>Profile</span>
+    </button>
+    <button mat-menu-item (click)="signIn()" > <span> {{signinOR}} </span></button>
+    <button mat-menu-item (click)="jobPage()"> <span> Find a Job</span></button>
+  </mat-menu>
+
+
 </mat-toolbar>

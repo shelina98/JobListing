@@ -11,7 +11,7 @@ import {take} from "rxjs/operators";
   styleUrls: ['./seeker-nav.component.css']
 })
 export class SeekerNavComponent implements OnInit {
-
+  isSmall:boolean = false
   isLoggedIn: boolean = false
   username: string | null = ""
   signinOR : string = "Sign In"
@@ -30,6 +30,10 @@ export class SeekerNavComponent implements OnInit {
     }
 
     this.username = localStorage.getItem('username')
+
+    this.us.isSmall.pipe().subscribe(
+      res=> this.isSmall = res
+    )
   }
 
 
