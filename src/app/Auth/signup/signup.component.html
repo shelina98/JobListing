@@ -11,7 +11,7 @@
             id="username"
             formControlName="username"
             class="form-control"
-            placeholder="Emri"
+            placeholder="Username"
           />
           <mat-error
             *ngIf="
@@ -51,7 +51,7 @@
             id="password"
             formControlName="password"
             class="form-control"
-            placeholder="Fjalekalimi"
+            placeholder="Password"
           />
           <mat-error *ngIf="signupForm.get('password')?.hasError('required')"
           >Password is required!</mat-error
@@ -74,7 +74,7 @@
             id="cpassword"
             formControlName="cpassword"
             class="form-control"
-            placeholder="Konfirmo Fjalekalimin"
+            placeholder="Confirm Password"
           />
         </mat-form-field>
       </div>
@@ -102,7 +102,7 @@
         "
         [disabled]="!signupForm.valid"
       >
-        Regjistrohu
+        Register
       </button>
     </form>
 
@@ -110,7 +110,7 @@
     <mat-error *ngIf="!emailUnique" class="post-click-error">
       There exists an account with this email!</mat-error>
 
-    <a [routerLink]="['/login']">Ke nje llogari? Identifikohu</a>
+    <a [routerLink]="['/login']">You have an account? Log in.</a>
 
   </mat-card>
 

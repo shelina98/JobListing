@@ -85,6 +85,7 @@ export class JobShellComponent implements OnInit {
   }
 
   filterlocation() {
+    debugger
       this.jobService.filterlocation(this.location).subscribe(
         res => {
           if(res.length != 0)
@@ -95,6 +96,8 @@ export class JobShellComponent implements OnInit {
             this.index= this.selectedJob.uid
           }
         })
-    }
+    console.log(this.jobsF)
+
+  }
 
 }

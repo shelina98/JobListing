@@ -6,7 +6,7 @@
 
       <img src="" width="50" alt="">
 
-      <mat-card-header>  <label>Identifikohu</label> </mat-card-header>
+      <mat-card-header>  <label>Log In</label> </mat-card-header>
 
 
 
@@ -39,7 +39,7 @@
             id="password"
             formControlName="password"
             class="form-control"
-            placeholder="Fjalekalimi"
+            placeholder="Password"
           />
           <mat-error
             *ngIf="!correctCredentials"
@@ -49,7 +49,7 @@
       </div>
 
 
-      <mat-error *ngIf="!correctCredentials" class="post-click-error">E-maili, ose Fjalekalimi nuk eshte i sakte.</mat-error>
+      <mat-error *ngIf="!correctCredentials" class="post-click-error">E-mail or Password is not correct.</mat-error>
 
 
       <button
@@ -63,6 +63,6 @@
        Identifikohu
       </button>
     </form>
-    <a [routerLink]="['/signup']" [queryParams]= "{ role: role }" class="link"> Nuk ke llogari? Regjistrohu </a>
+    <a [routerLink]="['/signup']" [queryParams]= "{ role: role }" class="link"> You don't have an account? Register now. </a>
   </mat-card>
 </div>
