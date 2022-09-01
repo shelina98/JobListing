@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import {AngularFireStorage} from "@angular/fire/storage";
-import {Observable} from "rxjs";
+import {BehaviorSubject, Observable} from "rxjs";
 import {User} from "../_models/user.model";
 import {NgForm} from "@angular/forms";
 
@@ -33,16 +33,22 @@ export class UsersService {
       });
   }
 
-  // getIdByEmail(email: string | any): Observable<any> | any {
-  //   let documentId: Observable<any>;
-  //   return this.fs
-  //     .collection('users',
-  //       (ref) => ref.
-  //     where('email',
-  //       '==', email))
-  //     .get() as Observable<any>;
-  // }
-
+//po e perdor per responsiveness
+  isSmall = new BehaviorSubject<boolean>(this.hasBreakpoint());
+  isSmallOb() : Observable<boolean> {
+    return this.isSmall.asObservable();
+  }
+  setSmall() : void {
+    localStorage.setItem('breakpoints', 'Small');
+    this.isSmall.next(true);
+  }
+  unsetSmall() : void {
+    localStorage.removeItem('breakpoints');
+    this.isSmall.next(false);
+  }
+  private hasBreakpoint() : boolean {
+    return !!localStorage.getItem('breakpoints');
+  }
 
 
 }
