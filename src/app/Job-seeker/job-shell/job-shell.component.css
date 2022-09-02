@@ -10,6 +10,10 @@
   flex-direction: column;
   border-bottom: 1px solid lightgray;
 }
+.filter-job {
+  height: 50%;
+}
+
 .inputContainers {
   display: flex;
   flex-direction: row;
@@ -17,7 +21,13 @@
   justify-content: space-between;
   padding: 0% 15%;
 }
-
+.inputContainers-small  {
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.isSmall {
+  width: 90%;
+}
 mat-form-field {
   width: 45%;
 }
@@ -26,7 +36,6 @@ button {
   color: white;
   bottom: 7px;
 }
-
 .postjob {
   color: #2557ae;
   align-self: center;
@@ -68,8 +77,9 @@ button {
   padding: 20px 20px;
   width: 50%;
 }
-
-
+.job-list-small {
+  width: 100%;
+}
 .detail-container {
   padding: 0px 20px;
   width: 60%;

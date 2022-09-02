@@ -22,7 +22,7 @@ export class JobServiceService {
   }
 
 
-  getCertainJob(uid: string | undefined): Observable<Job[]> {
+  getCertainJob(uid: string | null): Observable<Job[]> {
     return this._firestore
       .collection('jobs',
         (ref) =>

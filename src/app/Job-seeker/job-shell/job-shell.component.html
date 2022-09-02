@@ -1,26 +1,25 @@
 <div class="shell">
-    <div class="filter-job">
-    <div class="inputContainers" [formGroup]="filterJob">
-
-        <mat-form-field appearance="outline">
+  <div class="filter-job" [ngClass]="{'filter-jobs-small':isSmall}">
+    <div class="inputContainers" [formGroup]="filterJob" [ngClass]="{'inputContainers-small':isSmall}">
+        <mat-form-field appearance="outline" [ngClass]="{'isSmall': isSmall}">
           <mat-icon matSuffix>search</mat-icon>
           <p matPrefix > What </p>
           <input autocomplete="off" matInput
                  formControlName="searchQ"
                  placeholder="Job Title, keywords or company" >
         </mat-form-field>
-        <mat-form-field appearance="outline" >
+        <mat-form-field appearance="outline"  [ngClass]="{'isSmall': isSmall}">
           <mat-icon matSuffix>place</mat-icon>
           <p matPrefix > Where </p>
           <input autocomplete="off"  formControlName="location" matInput  placeholder="Address" >
         </mat-form-field>
-
       <button mat-button (click)="filterlocation()"> Search</button>
     </div>
+
     <div class="postjob" (click)="gotopostjobs()"> Post a Job as Recruiter </div>
   </div>
     <div class="jobs-feed">
-     <div class="job-list">
+      <div class="job-list" [ngClass]="{'job-list-small': isSmall}" >
       <div *ngFor="let job of jobsF" style="margin-bottom: 20px" >
         <mat-card class="example-card" (click)="active(job)" [ngClass]="{'active': index===job.uid}">
           <mat-card-title>{{job.title}}</mat-card-title>
@@ -39,7 +38,7 @@
         </mat-card>
       </div>
     </div>
-     <div class="detail-container">
+     <div class="detail-container" *ngIf="!isSmall">
       <app-job-detail [job]="selectedJob" [userid]="userid"></app-job-detail>
     </div>
     </div>

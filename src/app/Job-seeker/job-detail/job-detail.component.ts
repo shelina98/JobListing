@@ -6,6 +6,8 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {LovedModel} from "../../_models/loved.model";
 import {ApplicationModel} from "../../_models/application.model";
 import {take} from "rxjs/operators";
+import {UsersService} from "../../_services/users.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-job-detail',
@@ -19,17 +21,38 @@ export class JobDetailComponent implements OnChanges {
   user !: boolean
   jobs!:Job
   longText = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`;
+  isSmall:boolean = false
 
   constructor(private jobS: JobServiceService,
               private fs: AngularFirestore,
-              private snackBar:MatSnackBar,) { }
+              private snackBar:MatSnackBar,
+              private us: UsersService,
+              private router: Router) { }
 
   ngOnInit(): void {
-    this.jobS.getAllJobs().subscribe(
+    this.us.isSmall.subscribe(
       res => {
-        this.jobs = res[0]
+        this.isSmall = res;
+        if (this.isSmall) {
+          this.jobS.getCertainJob(localStorage.getItem('JobID')).subscribe(
+            res => this.jobs = res[0]
+          )
+          this.userid = true
+        }
+        else {
+          this.router.navigate([''])
+          this.jobS.getAllJobs().subscribe(
+            res => {
+              if(res.length != 0)
+              {
+                this.jobs = res[0]
+
+              }
+            });
+        }
       })
-  }
+
+    }
 
   ngOnChanges(changes: SimpleChanges) {
     this.jobs = changes.job.currentValue
