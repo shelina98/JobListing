@@ -17,15 +17,16 @@
 </div>
 
 <div class="recuter-shell-signedIn" *ngIf="whatWillShow">
-  <div class="job-list">
+
+  <div class="job-list" [ngClass]="{'job-list-small': isSmall}" >
     <app-job-list  [height1]="height"></app-job-list>
   </div>
 
-  <div class="job-detail" *ngIf="!Editmode">
-    <app-job-poster [height]="height"  ></app-job-poster>
+  <div class="job-detail" *ngIf="!Editmode && !isSmall">
+    <app-job-poster [height]="height"></app-job-poster>
   </div>
 
-  <div class="job-detail" *ngIf="Editmode">
+  <div class="job-detail" *ngIf="Editmode && !isSmall">
     <app-job-editer [height]="height"></app-job-editer>
   </div>
 

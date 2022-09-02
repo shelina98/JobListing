@@ -43,6 +43,7 @@
   width: 50%;
 }
 
+
 .recuter-shell-signedIn {
   display: flex;
   flex-direction: row;
@@ -55,6 +56,9 @@
   flex-direction: column;
   width: 60%;
   padding: 0px 20px;
+}
+.job-list-small {
+  width: 100%;
 }
 .job-detail {
   display: flex;
