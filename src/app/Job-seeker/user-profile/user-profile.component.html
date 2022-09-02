@@ -1,8 +1,8 @@
-<div class="profile-shell">
-  <div class="profile">
+<div class="profile-shell" [ngClass]="{'profile-shell-small':isSmall}">
+  <div class="profile" [ngClass]="{'profile-small':isSmall}">
     <app-profile-edit></app-profile-edit>
   </div>
-  <div class="love-interviews">
+  <div class="love-interviews" [ngClass]="{'love-interviews-small':isSmall}" >
     <div class="love">
       <app-loved></app-loved>
     </div>
