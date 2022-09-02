@@ -33,6 +33,7 @@ export class JobEditerComponent implements OnInit {
   private type: any;
   private uid: any;
   isSmall: boolean = false
+
   constructor(
     private fb: FormBuilder,
     private fs: AngularFirestore,
@@ -62,7 +63,7 @@ export class JobEditerComponent implements OnInit {
       res=>{
         this.isSmall = res;
         if(!this.isSmall) {
-          this.router.navigate(['/recruiter'],
+          this.router.navigate([],
             {
               queryParams: {
                 modify: 'modify',
@@ -70,21 +71,6 @@ export class JobEditerComponent implements OnInit {
                 company: this.company,
                 description: this.description,
                 address: this.address,
-                salary:this.salary,
-                type: this.type,
-                uid:this.uid
-              },
-            })
-        }
-        else {
-          this.router.navigate(['/recruiter/job-edit'],
-            {
-              queryParams: {
-                modify: 'modify',
-                title: this.title,
-                company: this.company,
-                description: this.description,
-                address:this.address,
                 salary:this.salary,
                 type: this.type,
                 uid:this.uid
@@ -145,10 +131,20 @@ export class JobEditerComponent implements OnInit {
      this.description = ""
      this.type = ""
      this.setForm()
+     this.router.navigate(['/recruiter'], {
+       queryParams : {
+           'modify': null,
+           'uid':null,
+           'title' : null,
+           'company': null,
+           'address': null,
+           'salary': null,
+           'description': null,
+           'type':null
+       },
+       queryParamsHandling: 'merge'
+     })
    }
-
-
-
     this.snackBar.open('Job Successfully updated.', 'OK', {
       duration: 2000,
       panelClass: ['blue-snackbar', 'login-snackbar'],

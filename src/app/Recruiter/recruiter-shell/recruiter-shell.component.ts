@@ -33,7 +33,15 @@ export class RecruiterShellComponent implements OnInit {
     })
 
     this.us.isSmall.pipe().subscribe(
-      res=> this.isSmall = res
+      res=> {
+        this.isSmall = res;
+        if(!this.isSmall) {
+          this.router.navigate([])
+        }
+        else {
+         this.router.navigate(['/recruiter'])
+        }
+      }
     )
   }
 
