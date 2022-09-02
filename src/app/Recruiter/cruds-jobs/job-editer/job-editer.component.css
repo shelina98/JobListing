@@ -7,6 +7,9 @@
   background-size: cover;
   height: calc(100% - 64px);
 }
+.flex-it-small {
+  height: fit-content;
+}
 
 .signup-form {
   display: inline-block;

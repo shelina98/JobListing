@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {AuthenticationService} from "../../../_services/authentication.service";
 import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {UsersService} from "../../../_services/users.service";
 
 @Component({
   selector: 'app-job-editer',
@@ -31,6 +32,7 @@ export class JobEditerComponent implements OnInit {
   private description: any;
   private type: any;
   private uid: any;
+  isSmall: boolean = false
   constructor(
     private fb: FormBuilder,
     private fs: AngularFirestore,
@@ -38,7 +40,8 @@ export class JobEditerComponent implements OnInit {
     private as: AuthenticationService,
     private route:ActivatedRoute,
     private responsive: BreakpointObserver,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private us: UsersService
   ) {
 
     route.queryParams.subscribe(p => {
@@ -54,10 +57,9 @@ export class JobEditerComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.responsive.observe(Breakpoints.HandsetLandscape).subscribe(result => {
-      if (result.matches) {
-        console.log("screens matches HandsetLandscape") }
-    });
+    this.us.isSmall.subscribe(
+      res=> this.isSmall = res
+    )
   }
 
   private setForm() {

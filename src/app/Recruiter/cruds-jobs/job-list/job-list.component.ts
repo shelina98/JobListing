@@ -9,6 +9,7 @@ import {DeleteDialogComponent} from "../delete-dialog/delete-dialog.component";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {DetailsComponent} from "../details/details.component";
 import {Router} from "@angular/router";
+import {UsersService} from "../../../_services/users.service";
 
 @Component({
   selector: 'app-job-list',
@@ -26,10 +27,13 @@ export class JobListComponent implements AfterViewInit {
 
   @Input() height1: number | undefined
 
+  isSmall: boolean = false
+
   constructor(private jobService: JobServiceService,
               private dialog: MatDialog,
               private snack: MatSnackBar,
-              private router: Router,) {
+              private router: Router,
+              private us: UsersService) {
          this.getJobs()
   }
 
@@ -55,6 +59,9 @@ export class JobListComponent implements AfterViewInit {
   }
 
   ngOnInit() {
+    this.us.isSmall.subscribe(
+      res=> this.isSmall = res
+    )
 
   }
 
@@ -74,20 +81,39 @@ export class JobListComponent implements AfterViewInit {
   }
 
   editItem(job: Job) {
-    // localStorage.setItem('idToedit', job.uid)
-     this.router.navigate([],
-     {
-       queryParams: {
-         modify: 'modify',
-         title: job.title,
-         company: job.company,
-         description: job.description,
-         address: job.address,
-         salary:job.salary,
-         type: job.type,
-         uid:job.uid
-       },
-     })
+    if(!this.isSmall) {
+      this.router.navigate([],
+        {
+          queryParams: {
+            modify: 'modify',
+            title: job.title,
+            company: job.company,
+            description: job.description,
+            address: job.address,
+            salary:job.salary,
+            type: job.type,
+            uid:job.uid
+          },
+        })
+    }
+    else {
+      this.router.navigate(['recruiter/job-edit'],
+        {
+        queryParams: {
+          modify: 'modify',
+            title: job.title,
+            company: job.company,
+            description: job.description,
+            address: job.address,
+            salary:job.salary,
+            type: job.type,
+            uid:job.uid
+        },
+        })
+
+    }
+
+
   }
 
 

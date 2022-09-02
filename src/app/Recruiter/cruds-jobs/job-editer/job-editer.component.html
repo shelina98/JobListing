@@ -1,4 +1,4 @@
-<div class="flex-it" [style.height.%]="height">
+<div class="flex-it" [style.height.%]="height" [ngClass]="{'flex-it-small': isSmall}" >
   <mat-card class="signup-form">
     <form [formGroup] ='jobForm' class="form-group">
 <!--      <mat-card-header> <label>Add Job</label></mat-card-header>-->

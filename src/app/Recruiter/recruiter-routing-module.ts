@@ -7,6 +7,7 @@ import {RecruiterGuard} from "../_guards/recruiter.guard";
 import {JobListComponent} from "./cruds-jobs/job-list/job-list.component";
 import {AuthenticationGuard} from "../_guards/authentication.guard";
 import {RecruiterProfileComponent} from "./recruiter-profile/recruiter-profile.component";
+import {JobEditerComponent} from "./cruds-jobs/job-editer/job-editer.component";
 const routes: Routes = [
   {
     path: 'recruiter',
@@ -21,6 +22,11 @@ const routes: Routes = [
       {
         path: 'profile-rec',
         component:RecruiterProfileComponent,
+        canActivate: [AuthenticationGuard]
+      },
+      {
+        path: 'job-edit',
+        component:JobEditerComponent,
         canActivate: [AuthenticationGuard]
       },
     ]
