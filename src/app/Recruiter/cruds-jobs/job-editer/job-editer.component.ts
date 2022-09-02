@@ -41,7 +41,8 @@ export class JobEditerComponent implements OnInit {
     private route:ActivatedRoute,
     private responsive: BreakpointObserver,
     private snackBar: MatSnackBar,
-    private us: UsersService
+    private us: UsersService,
+    private router: Router
   ) {
 
     route.queryParams.subscribe(p => {
@@ -58,8 +59,41 @@ export class JobEditerComponent implements OnInit {
 
   ngOnInit() {
     this.us.isSmall.subscribe(
-      res=> this.isSmall = res
+      res=>{
+        this.isSmall = res;
+        if(!this.isSmall) {
+          this.router.navigate(['/recruiter'],
+            {
+              queryParams: {
+                modify: 'modify',
+                title: this.title,
+                company: this.company,
+                description: this.description,
+                address: this.address,
+                salary:this.salary,
+                type: this.type,
+                uid:this.uid
+              },
+            })
+        }
+        else {
+          this.router.navigate(['/recruiter/job-edit'],
+            {
+              queryParams: {
+                modify: 'modify',
+                title: this.title,
+                company: this.company,
+                description: this.description,
+                address:this.address,
+                salary:this.salary,
+                type: this.type,
+                uid:this.uid
+              },
+            })
+        }
+      }
     )
+
   }
 
   private setForm() {
@@ -89,20 +123,31 @@ export class JobEditerComponent implements OnInit {
         address: form.get('address')?.value,
       }
       )
+   if(!this.isSmall) {
+     this.rt.navigate([],{
+       queryParams : {
+         'modify': null,
+         'uid':null,
+         'title' : null,
+         'company': null,
+         'address': null,
+         'salary': null,
+         'description': null,
+         'type':null
+       },
+       queryParamsHandling: 'merge'
+     })
+   }else {
+     this.title = ""
+     this.company= ""
+     this.address = ""
+     this.salary = ""
+     this.description = ""
+     this.type = ""
+     this.setForm()
+   }
 
-    this.rt.navigate([],{
-      queryParams : {
-        'modify': null,
-        'uid':null,
-        'title' : null,
-        'company': null,
-        'address': null,
-        'salary': null,
-        'description': null,
-        'type':null
-      },
-      queryParamsHandling: 'merge'
-    })
+
 
     this.snackBar.open('Job Successfully updated.', 'OK', {
       duration: 2000,
