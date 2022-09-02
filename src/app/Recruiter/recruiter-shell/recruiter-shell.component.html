@@ -1,5 +1,5 @@
-<div class="recruiter-shell" *ngIf="!whatWillShow">
-  <div class="post-job">
+<div class="recruiter-shell" *ngIf="!whatWillShow" [ngClass]="{'recruiter-shell-small': isSmall}" >
+  <div class="post-job"  [ngClass]="{'post-job-small': isSmall}" >
     <div class="title">
       You're here to hire.
     </div>
@@ -8,9 +8,10 @@
     </div>
     <div class="description">Post your job, interview candidates, </div>
     <div class="description">  and make offers all on Punekom. Start hiring today.</div>
+
     <div class="postjob" (click)="gotopostjob()"> Post a Job as Recruiter </div>
   </div>
-  <div class="image">
+  <div class="image"  *ngIf="!isSmall">
      <img src="assets/background.PNG" width="70%">
   </div>
 </div>

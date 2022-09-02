@@ -2,6 +2,7 @@ import {Component, Input, OnInit, SimpleChanges, ViewChild} from '@angular/core'
 import {AuthenticationService} from "../../_services/authentication.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {take} from "rxjs/operators";
+import {UsersService} from "../../_services/users.service";
 
 
 @Component({
@@ -14,11 +15,11 @@ export class RecruiterShellComponent implements OnInit {
   height = 100;
   Editmode:boolean = false
   m: boolean = true;
-
-
+  isSmall:boolean = false
   constructor(private authS: AuthenticationService,
               private route:ActivatedRoute,
-              private router: Router) {
+              private router: Router,
+              private  us: UsersService) {
 
     localStorage.setItem('role','recruiter')
 
@@ -31,6 +32,9 @@ export class RecruiterShellComponent implements OnInit {
       }
     })
 
+    this.us.isSmall.pipe().subscribe(
+      res=> this.isSmall = res
+    )
   }
 
   gotopostjob() {
