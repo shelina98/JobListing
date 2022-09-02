@@ -3,6 +3,7 @@ import {MatTableDataSource} from "@angular/material/table";
 import {JobServiceService} from "../../_services/job-service.service";
 import {ApplicationModel} from "../../_models/application.model";
 import {Job} from "../../_models/job.model";
+import {UsersService} from "../../_services/users.service";
 
 @Component({
   selector: 'app-recruiter-profile',
@@ -10,23 +11,15 @@ import {Job} from "../../_models/job.model";
   styleUrls: ['./recruiter-profile.component.css']
 })
 export class RecruiterProfileComponent implements OnInit {
-
-  dataSource!: MatTableDataSource<Job>;
-  displayedColumns: string[] = ['Title', 'Options'];
-
-  constructor(private jobService: JobServiceService) {
-    this.getApplications
+  isSmall:boolean = false
+  constructor(private us:UsersService) {
   }
   ngOnInit(): void {
-    this.getApplications()
+    this.us.isSmall.pipe().subscribe(
+      res=> this.isSmall = res
+    )
   }
 
 
-  getApplications() {
-    this.jobService.RecruiterJobs().subscribe(
-      res => {
-         console.log(res)
-      })
-  }
 
 }

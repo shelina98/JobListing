@@ -4,6 +4,10 @@
   flex-direction: row;
   background-color: #f3f2f1;
 }
+.profile-shell-small {
+  flex-direction: column;
+  height: fit-content;
+}
 .profile{
   overflow: hidden;
   display: flex;
@@ -12,10 +16,16 @@
   align-items: center;
   width: 50%;
 }
+.profile-small {
+  width: 100%;
+}
 .love-interviews {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   width: 50%;
   padding: 20px 20px ;
+}
+.love-interviews-small {
+  width: 100%;
 }
