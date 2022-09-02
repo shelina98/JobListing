@@ -29,6 +29,11 @@ const routes: Routes = [
         component:JobEditerComponent,
         canActivate: [AuthenticationGuard]
       },
+      {
+        path:'job-poster',
+        component:JobPosterComponent,
+        canActivate: [AuthenticationGuard]
+      }
     ]
   }
 ]

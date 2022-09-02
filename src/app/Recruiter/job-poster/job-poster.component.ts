@@ -7,6 +7,7 @@ import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 import firebase from "firebase";
 import {JobServiceService} from "../../_services/job-service.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {UsersService} from "../../_services/users.service";
 
 
 
@@ -30,7 +31,7 @@ export class JobPosterComponent implements OnInit {
 
   },
   );
-
+  isSmall: boolean = false
   private params!: Params;
   constructor(
     private fb: FormBuilder,
@@ -39,14 +40,14 @@ export class JobPosterComponent implements OnInit {
     private as: AuthenticationService,
     private route:ActivatedRoute,
     private responsive: BreakpointObserver,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private us: UsersService
   ) {}
 
   ngOnInit() {
-    this.responsive.observe(Breakpoints.HandsetLandscape).subscribe(result => {
-      if (result.matches) {
-        console.log("screens matches HandsetLandscape") }
-    });
+   this.us.isSmall.subscribe(res => {
+     this.isSmall = res
+   })
   }
 
   onClick() {
@@ -73,17 +74,21 @@ export class JobPosterComponent implements OnInit {
                 creationdate: firebase.firestore.FieldValue.serverTimestamp()
               }
             );
+         if(!this.isSmall) {
+           this.rt.navigate([],)
+           this.jobForm = this.fb.group({
+               title: ['', [Validators.required],],
+               company: ['', [Validators.required]],
+               description: ['', [Validators.required]],
+               salary: ['', [Validators.required]],
+               type: ['', [Validators.required]],
+               address: ['', Validators.required]
+             },
+           );
 
-          this.rt.navigate([],)
-          this.jobForm = this.fb.group({
-              title: ['', [Validators.required],],
-              company: ['', [Validators.required]],
-              description: ['', [Validators.required]],
-              salary: ['', [Validators.required]],
-              type: ['', [Validators.required]],
-              address: ['', Validators.required]
-            },
-          );
+         }else {
+           this.rt.navigate(['/recruiter'])
+         }
 
           this.snackBar.open('Job Successfully added.', 'OK', {
             duration: 2000,

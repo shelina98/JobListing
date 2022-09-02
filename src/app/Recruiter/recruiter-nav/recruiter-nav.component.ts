@@ -66,4 +66,7 @@ export class RecruiterNavComponent implements OnInit {
   goToHomePage() {
     this.router.navigate(['/recruiter'])
   }
+  post() {
+    this.router.navigate(['/recruiter/job-poster'])
+  }
 }
