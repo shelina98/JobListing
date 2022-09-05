@@ -4,6 +4,7 @@ import {JobServiceService} from "../../_services/job-service.service";
 import {ApplicationModel} from "../../_models/application.model";
 import {Job} from "../../_models/job.model";
 import {UsersService} from "../../_services/users.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-recruiter-profile',
@@ -12,11 +13,13 @@ import {UsersService} from "../../_services/users.service";
 })
 export class RecruiterProfileComponent implements OnInit {
   isSmall:boolean = false
-  constructor(private us:UsersService) {
+  constructor(private us:UsersService,
+              private router: Router) {
   }
   ngOnInit(): void {
     this.us.isSmall.pipe().subscribe(
-      res=> this.isSmall = res
+      res=>  {this.isSmall = res;
+        this.router.navigate([])}
     )
   }
 

@@ -27,7 +27,8 @@ const routes: Routes = [
       {
         path: 'details/:id',
         component:JobDetailComponent,
-        canActivate: [AuthenticationGuard]
+        canActivate: [JobSeekerGuard]
+
       },
     ]
   }
