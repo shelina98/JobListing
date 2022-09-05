@@ -63,7 +63,7 @@ export class JobEditerComponent implements OnInit {
       res=>{
         this.isSmall = res;
         if(!this.isSmall) {
-          this.router.navigate([],
+          this.router.navigate(['/recruiter'],
             {
               queryParams: {
                 modify: 'modify',
@@ -77,6 +77,22 @@ export class JobEditerComponent implements OnInit {
               },
             })
         }
+        else {
+          this.router.navigate(['/recruiter/job-edit'],
+            {
+              queryParams: {
+                modify: 'modify',
+                title: this.title,
+                company: this.company,
+                description: this.description,
+                address: this.address,
+                salary:this.salary,
+                type: this.type,
+                uid:this.uid
+              },
+            })
+        }
+
       }
     )
 
@@ -110,7 +126,7 @@ export class JobEditerComponent implements OnInit {
       }
       )
    if(!this.isSmall) {
-     this.rt.navigate([],{
+     this.rt.navigate(['/recruiter'],{
        queryParams : {
          'modify': null,
          'uid':null,
@@ -123,14 +139,7 @@ export class JobEditerComponent implements OnInit {
        },
        queryParamsHandling: 'merge'
      })
-   }else {
-     this.title = ""
-     this.company= ""
-     this.address = ""
-     this.salary = ""
-     this.description = ""
-     this.type = ""
-     this.setForm()
+   } else {
      this.router.navigate(['/recruiter'], {
        queryParams : {
            'modify': null,

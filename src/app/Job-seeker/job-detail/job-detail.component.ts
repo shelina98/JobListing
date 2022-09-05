@@ -37,7 +37,6 @@ export class JobDetailComponent implements OnChanges {
           this.jobS.getCertainJob(localStorage.getItem('JobID')).subscribe(
             res => this.jobs = res[0]
           )
-          this.userid = true
         }
         else {
           this.router.navigate([''])
@@ -74,7 +73,7 @@ export class JobDetailComponent implements OnChanges {
 
 
   addtofav(jobs: Job) {
-    if(this.userid) {
+    if(this.userid || localStorage.getItem('uid')) {
       let usid = localStorage.getItem('uid')
       this.jobS.getLOVEDInfo(usid,jobs.uid).pipe(take(1))
         .subscribe((el: LovedModel[]) => {
@@ -119,14 +118,10 @@ export class JobDetailComponent implements OnChanges {
      else {
        this.addtofavN(jobs)
     }
-
   }
-  // apply(uid:string, userid:string, jobid:string, jobtit:string) {
-  //
-  // }
 
   apply(jobs: Job) {
-    if (this.userid) {
+    if (this.userid || localStorage.getItem('uid')) {
       // this.delete(uid)
       let usid = localStorage.getItem('uid')
       this.jobS.getApplicationInfo(usid, jobs.uid).pipe(take(1))
@@ -158,9 +153,8 @@ export class JobDetailComponent implements OnChanges {
                       this.fs.collection('application').doc(appRec.id).update(
                         {
                           uid: el[0].uid
-                        }
-                      );
-                    })
+                        })
+                  })
                 }
                 else {
                   this.fs.collection('application').add({

@@ -100,6 +100,7 @@ export class JobListComponent implements AfterViewInit {
       this.router.navigate(['recruiter/job-edit'],
         {
         queryParams: {
+            modify: 'modify',
             title: job.title,
             company: job.company,
             description: job.description,

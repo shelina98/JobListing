@@ -39,7 +39,7 @@ export class RecruiterShellComponent implements OnInit {
           this.router.navigate([])
         }
         else {
-         this.router.navigate(['/recruiter'])
+         this.router.navigate([])
         }
       }
     )
@@ -51,7 +51,6 @@ export class RecruiterShellComponent implements OnInit {
 
 
   ngOnInit() {
-
     this.authS.isLoggedInOb().pipe(take(1)).subscribe(
       res => this.m = res
     )
