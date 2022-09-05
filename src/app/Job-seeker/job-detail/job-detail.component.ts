@@ -152,7 +152,7 @@ export class JobDetailComponent implements OnChanges {
                     appRec => {
                       this.fs.collection('application').doc(appRec.id).update(
                         {
-                          uid: el[0].uid
+                          uid: appRec.id
                         })
                   })
                 }
